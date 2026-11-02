@@ -23,7 +23,7 @@ export default async function Page({ params }: Props) {
   if (!post) notFound();
   return (
     <>
-      <SiteHeader />
+      <SiteHeader light />
       <main>
         <Article post={post} preview />
       </main>

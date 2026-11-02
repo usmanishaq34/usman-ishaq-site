@@ -1,13 +1,13 @@
 // Progress bar, header and mobile menu
-export default function SiteHeader() {
+export default function SiteHeader({ light = false } = {}) {
   return (
     <>
     <div id="progress"></div>
-    <header id="top">
+    <header id="top" className={light ? "on-light" : undefined}>
       {" "}
       <div className="wrap nav">
         {" "}
-        <a href="#" className="brand" aria-label="Usman Ishaq home">
+        <a href="/" className="brand" aria-label="Usman Ishaq home">
           {" "}
           <div className="brand-mark">
             <img src="/images/usman-ishaq-logo.webp" alt="Usman Ishaq logo" />
@@ -24,37 +24,37 @@ export default function SiteHeader() {
         {" "}
         <ul>
           <li>
-            <a href="#results">
+            <a href="/#results">
               {"Results"}
             </a>
           </li>
           <li>
-            <a href="#build">
+            <a href="/#build">
               {"Method"}
             </a>
           </li>
           <li>
-            <a href="#services">
+            <a href="/#services">
               {"Services"}
             </a>
           </li>
           <li>
-            <a href="#websites">
+            <a href="/#websites">
               {"Websites"}
             </a>
           </li>
           <li>
-            <a href="#about">
+            <a href="/#about">
               {"About"}
             </a>
           </li>
           <li>
-            <a href="#blog">
+            <a href="/#blog">
               {"Blog"}
             </a>
           </li>
           <li>
-            <a href="#faq">
+            <a href="/#faq">
               {"FAQ"}
             </a>
           </li>
@@ -78,34 +78,34 @@ export default function SiteHeader() {
     </header>
     <nav className="mobile-menu" id="mobileMenu">
       {" "}
-      <a href="#results">
+      <a href="/#results">
         {"Results"}
       </a>
-      <a href="#build">
+      <a href="/#build">
         {"Method"}
       </a>
-      <a href="#lab">
+      <a href="/#lab">
         {"Topical Maps"}
       </a>
-      <a href="#websites">
+      <a href="/#websites">
         {"Websites"}
       </a>
-      <a href="#services">
+      <a href="/#services">
         {"Services"}
       </a>
-      <a href="#work">
+      <a href="/#work">
         {"Work"}
       </a>
-      <a href="#about">
+      <a href="/#about">
         {"About"}
       </a>
-      <a href="#blog">
+      <a href="/#blog">
         {"Blog"}
       </a>
-      <a href="#faq">
+      <a href="/#faq">
         {"FAQ"}
       </a>
-      <a href="#contact">
+      <a href="/#contact">
         {"Contact"}
       </a>
       {" "}

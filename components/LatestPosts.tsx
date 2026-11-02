@@ -1,11 +1,9 @@
 import { prisma } from "@/lib/db";
-import BlogCards from "@/components/sections/BlogCards";
 import { CategoryFilters, FeaturedCard, PostCard, postCardSelect, type PostRow } from "@/components/PostCard";
 
-/* The homepage blog cards: the latest published posts from the dashboard,
-   with the category filter built from their categories. Until the first post
-   is published (or when the database is unreachable) the original static
-   cards from components/sections/BlogCards.jsx show instead. */
+/* The homepage blog section: the latest published posts from the dashboard,
+   with the category filter built from their categories. The newest post is
+   the featured card; the rest fill the grid. */
 export default async function LatestPosts() {
   const posts: PostRow[] = await prisma.post
     .findMany({
@@ -16,7 +14,9 @@ export default async function LatestPosts() {
     })
     .catch(() => []);
 
-  if (posts.length === 0) return <BlogCards />;
+  if (posts.length === 0) {
+    return <p className="blog-soon">New articles are published here. Check back soon.</p>;
+  }
   const [featured, ...rest] = posts;
 
   return (

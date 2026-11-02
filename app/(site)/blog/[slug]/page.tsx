@@ -60,7 +60,7 @@ export default async function Page({ params }: Props) {
   if (!post || !post.published) notFound();
   return (
     <>
-      <SiteHeader />
+      <SiteHeader light />
       <main>
         <Article post={post} />
       </main>

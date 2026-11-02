@@ -45,75 +45,81 @@ export function articleJsonLd(post: FullPost): string {
   return JSON.stringify(data).replace(/<\/script/gi, "<\\/script");
 }
 
-/* One blog post: dark header band (breadcrumb, meta, title) then the article
-   on the site's light "paper" background. Used by /blog/[slug] and, with
-   `preview`, by the dashboard's draft preview. */
+/* One blog post in the agency blog's design: breadcrumb, meta line, display
+   title, featured image, excerpt, article body, tags and author box. Used by
+   /blog/[slug] and, with `preview`, by the dashboard's draft preview. */
 export default function Article({ post, preview }: { post: FullPost; preview?: boolean }) {
   const author = post.postAuthor;
   const status = post.status === "published" || post.published ? "published" : post.status === "scheduled" ? "scheduled" : "draft";
   return (
     <>
       {preview ? (
-        <div className="preview-bar">
+        <div className="dv-preview-bar">
           <span>Preview · status: {status} · not indexed by search engines</span>
           <Link href={`/usman-1000-admin/posts/${post.id}`}>← Back to editor</Link>
         </div>
       ) : null}
-      <section className="page-hero">
-        <div className="wrap article-wrap">
-          <nav className="crumbs" aria-label="Breadcrumb">
+      <article className="dv-post">
+        <div className="dv-post-wrap">
+          <nav className="dv-post-crumbs" aria-label="Breadcrumb">
             <a href="/">Home</a>
             <span>/</span>
-            <a href="/blog">Blog</a>
+            <a href="/blog">Blogs</a>
+            <span>/</span>
+            <span>{post.title.length > 40 ? `${post.title.slice(0, 40)}…` : post.title}</span>
           </nav>
-          <div className="article-meta">
-            <span className="cat">{post.category?.name ?? "Article"}</span>
-            <span className="dot" />
+
+          <div className="dv-post-meta">
+            <span className="dv-post-cat">{post.category?.name ?? "Article"}</span>
+            <span className="dv-post-dot" />
             <time dateTime={(post.publishedAt ?? post.createdAt).toISOString()}>{formatDate(post.publishedAt ?? post.createdAt)}</time>
             {post.readingTimeMinutes ? (
               <>
-                <span className="dot" />
+                <span className="dv-post-dot" />
                 <span>{post.readingTimeMinutes} min read</span>
               </>
             ) : null}
           </div>
-          <h1>{post.title}</h1>
-          {post.excerpt ? <p className="lead article-excerpt">{post.excerpt}</p> : null}
-        </div>
-      </section>
-      <section className="light article">
-        <div className="wrap article-wrap">
+
+          <h1 className="dv-post-title">{post.title}</h1>
+
           {post.featuredImage ? (
-            <figure className="article-hero">
+            <figure className="dv-post-figure">
               <img src={post.featuredImage} alt={post.featuredImageAlt || post.title} title={post.featuredImageTitle ?? undefined} />
               {post.featuredImageCaption ? <figcaption>{post.featuredImageCaption}</figcaption> : null}
             </figure>
           ) : null}
-          <div className="article-body" dangerouslySetInnerHTML={{ __html: withScrollableTables(post.content) }} />
+
+          {post.excerpt ? <p className="post-excerpt">{post.excerpt}</p> : null}
+
+          <div className="post-content" dangerouslySetInnerHTML={{ __html: withScrollableTables(post.content) }} />
           <TableScrollArrows />
+
           {post.tags.length > 0 ? (
-            <div className="tags">
+            <div className="dv-post-tags">
               {post.tags.map((t) => (
                 <span key={t}>#{t}</span>
               ))}
             </div>
           ) : null}
+
           {author && author.bio ? (
-            <div className="author-box">
-              {author.photoUrl ? <img src={author.photoUrl} alt={author.name} /> : <span className="initial">{author.name.charAt(0).toUpperCase()}</span>}
+            <div className="dv-author">
+              {author.photoUrl ? <img src={author.photoUrl} alt={author.name} /> : <span className="dv-author-initial">{author.name.charAt(0).toUpperCase()}</span>}
               <div>
-                <div className="by">Written by</div>
-                <div className="name">{author.name}</div>
-                {author.title ? <div className="role">{author.title}</div> : null}
+                <div className="dv-author-by">Written by</div>
+                <div className="dv-author-name">{author.name}</div>
+                {author.title ? <div className="dv-author-role">{author.title}</div> : null}
                 <p>{author.bio}</p>
               </div>
             </div>
           ) : null}
-          <p className="article-back">
-            <a className="btn btn-ghost" href="/blog">← All articles</a>
+
+          <p className="dv-post-back">
+            <a href="/blog">← All articles</a>
           </p>
         </div>
-      </section>
+      </article>
       {!preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleJsonLd(post) }} /> : null}
     </>
   );

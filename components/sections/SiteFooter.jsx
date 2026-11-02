@@ -9,7 +9,7 @@ export default function SiteFooter() {
           {" "}
           <div>
             {" "}
-            <a href="#" className="brand">
+            <a href="/" className="brand">
               <div className="brand-mark">
                 <img src="/images/usman-ishaq-logo.webp" alt="Usman Ishaq logo" />
               </div>
@@ -76,27 +76,27 @@ export default function SiteFooter() {
             </h5>
             <ul>
               <li>
-                <a href="#services">
+                <a href="/#services">
                   {"Semantic SEO Architecture"}
                 </a>
               </li>
               <li>
-                <a href="#services">
+                <a href="/#services">
                   {"Content Audits"}
                 </a>
               </li>
               <li>
-                <a href="#services">
+                <a href="/#services">
                   {"Website Development"}
                 </a>
               </li>
               <li>
-                <a href="#services">
+                <a href="/#services">
                   {"Schema and Technical SEO"}
                 </a>
               </li>
               <li>
-                <a href="#services">
+                <a href="/#services">
                   {"AI Search Visibility"}
                 </a>
               </li>
@@ -109,27 +109,27 @@ export default function SiteFooter() {
             </h5>
             <ul>
               <li>
-                <a href="#lab">
+                <a href="/#lab">
                   {"Topical maps"}
                 </a>
               </li>
               <li>
-                <a href="#work">
+                <a href="/#work">
                   {"Portfolio"}
                 </a>
               </li>
               <li>
-                <a href="#about">
+                <a href="/#about">
                   {"About"}
                 </a>
               </li>
               <li>
-                <a href="https://usmanishaq.com/semantic-seo/">
+                <a href="/blog">
                   {"Semantic SEO hub"}
                 </a>
               </li>
               <li>
-                <a href="https://usmanishaq.com/content-writing/">
+                <a href="/blog">
                   {"Content writing hub"}
                 </a>
               </li>

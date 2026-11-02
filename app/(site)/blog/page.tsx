@@ -3,12 +3,14 @@ import SiteHeader from "@/components/sections/SiteHeader";
 import SiteFooter from "@/components/sections/SiteFooter";
 import Overlays from "@/components/sections/Overlays";
 import Interactions from "@/components/Interactions";
-import { CategoryFilters, PostCard, postCardSelect, type PostRow } from "@/components/PostCard";
+import BlogCategoryFilter from "@/components/BlogCategoryFilter";
+import { BlogCard, categoriesOf, postCardSelect, type PostRow } from "@/components/PostCard";
 import { prisma } from "@/lib/db";
 import { route } from "@/lib/routes";
 import { withSeoOverride } from "@/lib/site-content";
 
-// Posts come from the dashboard. Refreshed on publish and every 30 seconds.
+// Blog index in the agency blog's design. Posts come from the dashboard;
+// refreshed on publish and every 30 seconds.
 export const revalidate = 30;
 
 const r = route("/blog");
@@ -33,40 +35,47 @@ export default async function BlogPage() {
       select: postCardSelect,
     })
     .catch(() => []);
+  const cats = categoriesOf(posts);
 
   return (
     <>
-      <SiteHeader />
-      <main>
-        <section className="page-hero">
-          <div className="wrap">
-            <span className="eyebrow">The blog</span>
-            <h1>Articles on semantic SEO, content networks and AI search</h1>
-            <p className="lead">Plain-language articles written from real projects, not theory. Every post names the method, the example and what changed.</p>
-          </div>
-        </section>
-        <section className="blog blog-list">
-          <div className="wrap">
+      <SiteHeader light />
+      <main className="dv-blog">
+        <div className="dv-blog-wrap">
+          <header className="dv-blog-hero">
+            <span className="dv-blog-label">Blogs</span>
+            <h1 className="dv-blog-h1">
+              Plain language, <em>real projects.</em>
+            </h1>
+            <p className="dv-blog-intro">
+              Articles on semantic SEO, content networks and AI search, written from the sites I build for trade and service businesses.{" "}
+              <strong>Every post names the method, the example and what changed.</strong>
+            </p>
+            {cats.length > 0 ? (
+              <div className="dv-blog-categories">
+                <button className="dv-blog-cat-pill active" data-cat="all">All</button>
+                {cats.map(([slug, name]) => (
+                  <button key={slug} className="dv-blog-cat-pill" data-cat={slug}>{name}</button>
+                ))}
+              </div>
+            ) : null}
+          </header>
+          <div className="dv-blog-grid" id="blogGrid">
             {posts.length === 0 ? (
-              <div className="blog-empty">
-                <p>No articles yet. Posts published from the dashboard appear here.</p>
+              <div className="dv-blog-empty">
+                <p className="dv-blog-empty-title">No posts yet.</p>
+                <p>Articles published from the dashboard appear here.</p>
               </div>
             ) : (
-              <>
-                <CategoryFilters posts={posts} />
-                <div className="bgrid" id="bgrid">
-                  {posts.map((p, i) => (
-                    <PostCard key={p.id} post={p} delay={i % 3} />
-                  ))}
-                </div>
-              </>
+              posts.map((p) => <BlogCard key={p.id} post={p} />)
             )}
           </div>
-        </section>
+        </div>
       </main>
       <SiteFooter />
       <Overlays />
       <Interactions />
+      <BlogCategoryFilter />
     </>
   );
 }
