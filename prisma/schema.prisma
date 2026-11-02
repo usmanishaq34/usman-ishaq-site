@@ -1,0 +1,133 @@
+// usmanishaq.com dashboard: blog posts, media, categories, authors, admin
+// users and the SiteContent table (homepage edits, sign-in codes, IP blocks).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  name           String?
+  hashedPassword String?
+  role           Role     @default(ADMIN)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  posts          Post[]
+  uploads        Media[]
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model Media {
+  id           String   @id @default(cuid())
+  url          String
+  filename     String
+  mimeType     String?
+  width        Int?
+  height       Int?
+  size         Int
+  title        String?  @db.Text
+  altText      String?  @db.Text
+  caption      String?  @db.Text
+  description  String?  @db.Text
+  uploadedById String
+  uploadedBy   User     @relation(fields: [uploadedById], references: [id], onDelete: NoAction)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([createdAt])
+}
+
+model Post {
+  id      String @id @default(cuid())
+  slug    String @unique
+  title   String
+  excerpt String @db.Text
+  content String @db.Text
+
+  featuredImage        String?
+  featuredImageAlt     String?
+  featuredImageTitle   String?
+  featuredImageCaption String? @db.Text
+
+  tags         String[]
+  categoryId   String?
+  category     Category? @relation(fields: [categoryId], references: [id])
+  authorId     String
+  author       User      @relation(fields: [authorId], references: [id])
+  postAuthorId String?
+  postAuthor   Author?   @relation(fields: [postAuthorId], references: [id])
+
+  seoTitle          String?
+  seoDescription    String?  @db.Text
+  focusKeyword      String?
+  secondaryKeywords String[]
+  canonicalUrl      String?
+  noindex           Boolean  @default(false)
+  nofollow          Boolean  @default(false)
+
+  ogTitle       String?
+  ogDescription String? @db.Text
+  ogImage       String?
+
+  twitterTitle       String?
+  twitterDescription String? @db.Text
+  twitterImage       String?
+
+  schemaType String? @default("Article")
+
+  readingTimeMinutes Int?
+
+  published    Boolean   @default(false)
+  status       String    @default("draft") // draft | scheduled | published
+  scheduledFor DateTime?
+  publishedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@index([published, publishedAt])
+  @@index([status, scheduledFor])
+}
+
+model Category {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  name           String   @unique
+  description    String?  @db.Text
+  seoTitle       String?
+  seoDescription String?  @db.Text
+  posts          Post[]
+  createdAt      DateTime @default(now())
+}
+
+model Author {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  title     String?
+  bio       String?  @db.Text
+  photoUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
+}
+
+// Dashboard edits to the homepage (key "/"), sign-in codes ("2fa:<userId>")
+// and sign-in IP blocks ("login-block:<ip>").
+model SiteContent {
+  key       String   @id
+  data      Json
+  updatedAt DateTime @default(now()) @updatedAt
+  updatedBy String?
+}

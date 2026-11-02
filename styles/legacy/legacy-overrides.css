@@ -1,0 +1,21 @@
+/* Adjustments that exist only because the old body-level rules now live on a
+   wrapper <div class="dv-legacy"> instead of <body>. */
+
+/* overflow-x:hidden on a wrapper makes it a scroll container and breaks
+   position:sticky (the founder image, table arrows). clip hides the same
+   overflow without creating a scroll container. */
+.dv-legacy { overflow-x: clip !important; }
+
+/* Old site rule "main nav, article nav { position: static }" no longer
+   matches because the wrapper sits inside <main>. Same effect, re-targeted:
+   breadcrumbs and other content navs stay in normal flow under the new header. */
+.dv-legacy-site nav {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+}
+
+/* The dashboard does not load the public site's globals.css, so the browser's
+   default body margin is removed here. */
+body:has(> .dv-legacy-admin) { margin: 0; }
+.dv-legacy-admin { min-height: 100vh; }
