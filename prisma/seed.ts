@@ -1,8 +1,9 @@
 /**
- * Creates the first dashboard user. Run once after `npm run db:push`, with
- * ADMIN_EMAIL and ADMIN_PASSWORD set in .env.local:
+ * Creates the dashboard user, or sets its password. Run after `npm run db:push`,
+ * with ADMIN_EMAIL and ADMIN_PASSWORD set in .env.local:
  *   npm run db:seed
- * Running it again with the same email changes nothing.
+ * Running it again for an existing email resets that user's password to
+ * ADMIN_PASSWORD, which is also the way back in after a forgotten password.
  */
 import { PrismaClient } from "@prisma/client"
 import bcrypt from "bcryptjs"
@@ -15,12 +16,13 @@ async function main() {
   if (!email || !password) throw new Error("Set ADMIN_EMAIL and ADMIN_PASSWORD before seeding.")
   if (password.length < 8) throw new Error("ADMIN_PASSWORD needs at least 8 characters.")
 
+  const hashedPassword = await bcrypt.hash(password, 12)
   const user = await prisma.user.upsert({
     where: { email },
-    update: {},
-    create: { email, name: process.env.ADMIN_NAME || "Usman Ishaq", hashedPassword: await bcrypt.hash(password, 12), role: "ADMIN" },
+    update: { hashedPassword },
+    create: { email, name: process.env.ADMIN_NAME || "Usman Ishaq", hashedPassword, role: "ADMIN" },
   })
-  console.log(`Admin user ready: ${user.email}`)
+  console.log(`Admin user ready: ${user.email} (password set from ADMIN_PASSWORD)`)
 }
 
 main()
