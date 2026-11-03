@@ -43,7 +43,8 @@ h3{font-size:22px}
 .btn-primary:hover{background:var(--orange-2);transform:translateY(-2px)}
 .btn-ghost{border:1px solid rgba(255,255,255,.22);color:var(--text);background:rgba(255,255,255,.06)}
 .btn-ghost:hover{border-color:var(--orange);color:#fff;background:rgba(219,76,35,.18)}
-.light .btn-ghost{border-color:#d9d2c7;color:var(--dark-text);background:#fff}
+.light .btn-ghost,.blog .btn-ghost{border-color:#d9d2c7;color:var(--dark-text);background:#fff}
+.light .btn-ghost:hover,.blog .btn-ghost:hover{border-color:var(--orange);color:var(--orange);background:#fff}
 .arrow{transition:transform .25s}
 .btn:hover .arrow{transform:translateX(4px)}
 

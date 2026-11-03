@@ -330,7 +330,9 @@ export default function Interactions() {
       bfilters.addEventListener("click", (e) => {
         const b = e.target.closest(".bfilter"); if (!b) return;
         bfilters.querySelectorAll(".bfilter").forEach((x) => x.classList.toggle("on", x === b));
-        const f = b.dataset.f; document.querySelectorAll("#bgrid .post").forEach((p) => p.classList.toggle("hide", f !== "all" && p.dataset.c !== f));
+        // Each tab shows at most six posts: the newest six overall, or the newest six of that category.
+        const f = b.dataset.f; let shown = 0;
+        document.querySelectorAll("#bgrid .post").forEach((p) => { const match = f === "all" || p.dataset.c === f; const show = match && shown < 6; if (show) shown++; p.classList.toggle("hide", !show); });
       });
     }
 

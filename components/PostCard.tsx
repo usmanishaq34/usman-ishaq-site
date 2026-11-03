@@ -51,10 +51,10 @@ export function Art({ post, label, lit }: { post: PostRow; label: string; lit?: 
   );
 }
 
-export function PostCard({ post, delay }: { post: PostRow; delay?: number }) {
+export function PostCard({ post, delay, hidden }: { post: PostRow; delay?: number; hidden?: boolean }) {
   const d = delay ? ` d${delay}` : "";
   return (
-    <a className={`post rv${d}`} data-c={catSlug(post)} href={`/blog/${post.slug}`}>
+    <a className={`post rv${d}${hidden ? " hide" : ""}`} data-c={catSlug(post)} href={`/blog/${post.slug}`}>
       <Art post={post} label={catName(post).toUpperCase()} />
       <div className="body">
         <span className="cat">{catName(post)}</span>
