@@ -10,6 +10,7 @@ import { Color } from "@tiptap/extension-color"
 import { Table, TableRow, TableHeader, TableCell } from "@tiptap/extension-table"
 import { useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
+import MediaLibraryModal from "./MediaLibraryModal"
 
 interface Props {
   value: string
@@ -163,6 +164,9 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
   const [showColorPicker, setShowColorPicker] = useState(false)
+  // Image button: a small menu with "Upload from computer" and "Choose from media library".
+  const [showImageMenu, setShowImageMenu] = useState(false)
+  const [showMediaLibrary, setShowMediaLibrary] = useState(false)
 
   const editor = useEditor({
     extensions: [
@@ -261,6 +265,18 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
       setUploading(false)
       if (fileInputRef.current) fileInputRef.current.value = ""
     }
+  }
+
+  // An image that already sits in the media library is inserted with its saved alt text and title.
+  function insertImageFromLibrary(url: string, meta?: { alt?: string; title?: string }) {
+    if (!editor) return
+    editor
+      .chain()
+      .focus()
+      .insertContent({ type: "image", attrs: { src: url, alt: meta?.alt ?? "", title: meta?.title ?? null, "data-size": "full" } })
+      .run()
+    setShowMediaLibrary(false)
+    toast.success("Image inserted")
   }
 
   function applySource() {
@@ -468,7 +484,34 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
 
         <ToolGroup>
           <ToolButton active={editor.isActive("link")} onClick={setLink} label="🔗" tip="Link" />
-          <ToolButton onClick={() => fileInputRef.current?.click()} label={uploading ? "..." : "🖼"} tip="Insert image" disabled={uploading} />
+          <div className="relative">
+            <ToolButton onClick={() => setShowImageMenu((v) => !v)} label={uploading ? "..." : "🖼"} tip="Insert image" disabled={uploading} active={showImageMenu} />
+            {showImageMenu && (
+              <div className="absolute top-full left-0 mt-1 z-30 bg-bg border border-line shadow-lg py-1 min-w-[230px]" style={{ borderRadius: 2 }}>
+                <button
+                  type="button"
+                  className="block w-full text-left px-3 py-2 text-sm text-ink hover:bg-bg-2"
+                  onClick={() => {
+                    setShowImageMenu(false)
+                    fileInputRef.current?.click()
+                  }}
+                >
+                  ⬆ Upload from computer
+                </button>
+                <button
+                  type="button"
+                  className="block w-full text-left px-3 py-2 text-sm text-ink hover:bg-bg-2"
+                  onClick={() => {
+                    setShowImageMenu(false)
+                    setShowMediaLibrary(true)
+                  }}
+                >
+                  🗂 Choose from media library
+                </button>
+              </div>
+            )}
+            {showMediaLibrary && <MediaLibraryModal onClose={() => setShowMediaLibrary(false)} onSelect={(url, meta) => insertImageFromLibrary(url, meta)} />}
+          </div>
           <ToolButton
             onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
             label="⊞"
