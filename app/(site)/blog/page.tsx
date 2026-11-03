@@ -42,7 +42,7 @@ export default async function BlogPage() {
       <SiteHeader light />
       <main className="dv-blog">
         <div className="dv-blog-wrap">
-          <header className="dv-blog-hero">
+          <div className="dv-blog-hero">
             <span className="dv-blog-label">Blogs</span>
             <h1 className="dv-blog-h1">
               Plain language, <em>real projects.</em>
@@ -59,7 +59,7 @@ export default async function BlogPage() {
                 ))}
               </div>
             ) : null}
-          </header>
+          </div>
           <div className="dv-blog-grid" id="blogGrid">
             {posts.length === 0 ? (
               <div className="dv-blog-empty">
