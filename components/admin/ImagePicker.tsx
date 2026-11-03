@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import MediaLibraryModal from "./MediaLibraryModal"
+import { saveMediaMeta } from "@/lib/media-meta"
 
 interface ImagePickerProps {
   value: string
@@ -16,6 +17,9 @@ interface ImagePickerProps {
   showInlineMeta?: boolean
 }
 
+/* Featured image picker. An image picked from the library brings its alt
+   text, title and caption along; alt text, title and caption typed here are
+   written back to the library record, so the two never drift apart. */
 export default function ImagePicker({
   value,
   onChange,
@@ -28,14 +32,37 @@ export default function ImagePicker({
   showInlineMeta = false,
 }: ImagePickerProps) {
   const [showLibrary, setShowLibrary] = useState(false)
+  const [synced, setSynced] = useState<"idle" | "saving" | "ok" | "none">("idle")
+  // Only values typed here are written back, never the ones loaded with the post.
+  const touched = useRef(false)
+  const timer = useRef<number | null>(null)
 
   function handlePick(url: string, meta?: { alt?: string; title?: string; caption?: string }) {
+    touched.current = false
     onChange(url, meta)
-    if (meta?.alt && onAltChange) onAltChange(meta.alt)
-    if (meta?.title && onTitleChange) onTitleChange(meta.title)
-    if (meta?.caption && onCaptionChange) onCaptionChange(meta.caption)
+    if (onAltChange) onAltChange(meta?.alt ?? "")
+    if (onTitleChange) onTitleChange(meta?.title ?? "")
+    if (onCaptionChange) onCaptionChange(meta?.caption ?? "")
     setShowLibrary(false)
   }
+
+  function edit(fn: ((v: string) => void) | undefined, v: string) {
+    touched.current = true
+    fn?.(v)
+  }
+
+  useEffect(() => {
+    if (!touched.current || !value) return
+    if (timer.current) window.clearTimeout(timer.current)
+    setSynced("saving")
+    timer.current = window.setTimeout(async () => {
+      const ok = await saveMediaMeta(value, { alt: altValue ?? "", title: titleValue ?? "", caption: captionValue ?? "" })
+      setSynced(ok ? "ok" : "none")
+    }, 900)
+    return () => {
+      if (timer.current) window.clearTimeout(timer.current)
+    }
+  }, [value, altValue, titleValue, captionValue])
 
   return (
     <div className="space-y-3">
@@ -105,7 +132,7 @@ export default function ImagePicker({
             <input
               type="text"
               value={altValue ?? ""}
-              onChange={(e) => onAltChange?.(e.target.value)}
+              onChange={(e) => edit(onAltChange, e.target.value)}
               placeholder="Describe the image for screen readers"
               className="w-full px-3 py-2 border border-line-strong text-sm"
               style={{ borderRadius: 2 }}
@@ -116,7 +143,7 @@ export default function ImagePicker({
             <input
               type="text"
               value={titleValue ?? ""}
-              onChange={(e) => onTitleChange?.(e.target.value)}
+              onChange={(e) => edit(onTitleChange, e.target.value)}
               placeholder="Shown on hover"
               className="w-full px-3 py-2 border border-line-strong text-sm"
               style={{ borderRadius: 2 }}
@@ -126,12 +153,18 @@ export default function ImagePicker({
             <label className="mono-pill block mb-1.5">Caption</label>
             <textarea
               value={captionValue ?? ""}
-              onChange={(e) => onCaptionChange?.(e.target.value)}
+              onChange={(e) => edit(onCaptionChange, e.target.value)}
               placeholder="Visible caption below image"
               className="w-full px-3 py-2 border border-line-strong text-sm min-h-[60px]"
               style={{ borderRadius: 2 }}
             />
           </div>
+          <p className="text-[11px] text-ink-muted">
+            {synced === "saving" && "Saving to the media library…"}
+            {synced === "ok" && "Saved to the media library too, so the image keeps these next time."}
+            {synced === "none" && "This URL is not in the media library, so these apply to this post only."}
+            {synced === "idle" && "Changes here are also saved on the image in the media library."}
+          </p>
         </div>
       )}
 

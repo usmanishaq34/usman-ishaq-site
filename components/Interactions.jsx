@@ -15,6 +15,21 @@ export default function Interactions() {
     const $ = (id) => document.getElementById(id);
     const NS = "http://www.w3.org/2000/svg";
 
+    /* ---------- dashboard visual editor and reveal fallback ---------- */
+    // Inside the dashboard editor (iframe, ?dv-edit=1) every section shows at once;
+    // elsewhere, anything still hidden after 2.5s that is on screen is revealed too.
+    const editing = new URLSearchParams(location.search).has("dv-edit") || window.self !== window.top;
+    if (editing) document.documentElement.classList.add("dv-editing");
+    const revealAll = () => {
+      document.querySelectorAll(".rv,.pipeline,.stats,#indCloud,.ind").forEach((x) => x.classList.add("in"));
+      document.querySelectorAll("#measure .fill").forEach((f) => (f.style.width = f.dataset.w + "%"));
+      document.querySelectorAll(".cnt[data-to]").forEach((c) => { const to = +c.dataset.to; c.textContent = to >= 1000 && to !== 2019 ? to.toLocaleString("en-US") : String(to); });
+      document.querySelectorAll(".ac[data-to]").forEach((c) => (c.textContent = (+c.dataset.to).toFixed(+c.dataset.dec || 0)));
+    };
+    const revealVisible = () => {
+      document.querySelectorAll(".rv:not(.in)").forEach((x) => { const r = x.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) x.classList.add("in"); });
+    };
+
     /* ---------- lightbox ---------- */
     const lb = $("lightbox"), lbImg = $("lbImg");
     function openLb(src, alt) {
@@ -344,6 +359,9 @@ export default function Interactions() {
         const ok = $("formOk"); if (ok) ok.classList.add("show");
       });
     }
+
+    if (editing) revealAll();
+    else setTimeout(revealVisible, 2500);
   }, []);
   return null;
 }

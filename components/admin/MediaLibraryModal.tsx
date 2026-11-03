@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { toast } from "sonner"
+import { saveMediaMeta } from "@/lib/media-meta"
 
 interface MediaItem {
   id: string
@@ -19,10 +20,17 @@ interface Props {
   onSelect: (url: string, meta?: { alt?: string; title?: string; caption?: string }) => void
 }
 
+/* Media library picker. A fresh upload first asks for its alt text and title,
+   which are saved on the library record, so every later use of the image
+   (featured image, editor, another post) comes with them filled in. */
 export default function MediaLibraryModal({ onClose, onSelect }: Props) {
   const [items, setItems] = useState<MediaItem[]>([])
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
+  const [fresh, setFresh] = useState<MediaItem | null>(null)
+  const [freshAlt, setFreshAlt] = useState("")
+  const [freshTitle, setFreshTitle] = useState("")
+  const [saving, setSaving] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   // cache:"no-store" makes sure the picker always shows the CURRENT library,
@@ -59,15 +67,33 @@ export default function MediaLibraryModal({ onClose, onSelect }: Props) {
       formData.append("file", file)
       const res = await fetch("/api/upload", { method: "POST", body: formData })
       if (!res.ok) throw new Error("Upload failed")
-      const newItem = await res.json()
+      const newItem = (await res.json()) as MediaItem
       setItems((prev) => [newItem, ...prev])
-      loadMedia()
-      toast.success("Uploaded")
+      setFresh(newItem)
+      setFreshAlt("")
+      setFreshTitle(file.name.replace(/\.[a-z0-9]+$/i, "").replace(/[-_]+/g, " "))
+      toast.success("Uploaded. Add the alt text and title.")
     } catch {
       toast.error("Upload failed")
     } finally {
       setUploading(false)
+      if (fileInputRef.current) fileInputRef.current.value = ""
     }
+  }
+
+  // Saves the alt text and title of the fresh upload to the library, then
+  // hands the image to the caller with those values.
+  async function useFresh(e: React.FormEvent) {
+    e.preventDefault()
+    if (!fresh) return
+    setSaving(true)
+    const ok = await saveMediaMeta(fresh, { alt: freshAlt.trim(), title: freshTitle.trim() })
+    setSaving(false)
+    if (!ok) toast.error("The alt text could not be saved to the library")
+    const updated = { ...fresh, altText: freshAlt.trim(), title: freshTitle.trim() }
+    setItems((prev) => prev.map((m) => (m.id === fresh.id ? updated : m)))
+    setFresh(null)
+    onSelect(updated.url, { alt: updated.altText || undefined, title: updated.title || undefined, caption: updated.caption ?? undefined })
   }
 
   return (
@@ -111,6 +137,43 @@ export default function MediaLibraryModal({ onClose, onSelect }: Props) {
             </button>
           </div>
         </div>
+
+        {/* Fresh upload: alt text and title before it is used */}
+        {fresh && (
+          <form onSubmit={useFresh} className="px-6 py-4 border-b border-line bg-bg-2 flex gap-4 items-start flex-wrap">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={fresh.url} alt="" className="w-20 h-20 object-cover border border-line flex-shrink-0" />
+            <div className="flex-1 min-w-[240px] grid gap-2">
+              <p className="mono-pill text-accent">New upload: {fresh.filename}</p>
+              <input
+                type="text"
+                value={freshAlt}
+                onChange={(e) => setFreshAlt(e.target.value)}
+                placeholder="Alt text: what the image shows, for search engines and screen readers"
+                className="w-full px-3 py-2 border border-line-strong text-sm"
+                style={{ borderRadius: 2 }}
+                autoFocus
+                required
+              />
+              <input
+                type="text"
+                value={freshTitle}
+                onChange={(e) => setFreshTitle(e.target.value)}
+                placeholder="Title (shown on hover)"
+                className="w-full px-3 py-2 border border-line-strong text-sm"
+                style={{ borderRadius: 2 }}
+              />
+              <div className="flex gap-2 items-center">
+                <button type="submit" className="btn-primary text-xs" disabled={saving}>
+                  {saving ? "Saving..." : "Save and use this image"}
+                </button>
+                <button type="button" className="text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink" onClick={() => setFresh(null)}>
+                  Later
+                </button>
+              </div>
+            </div>
+          </form>
+        )}
 
         {/* Grid */}
         <div className="flex-1 overflow-y-auto p-6">

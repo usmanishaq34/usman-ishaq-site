@@ -49,7 +49,7 @@ export default function SiteHeader({ light = false } = {}) {
             </a>
           </li>
           <li>
-            <a href="/#blog">
+            <a href="/blog">
               {"Blog"}
             </a>
           </li>
@@ -99,7 +99,7 @@ export default function SiteHeader({ light = false } = {}) {
       <a href="/#about">
         {"About"}
       </a>
-      <a href="/#blog">
+      <a href="/blog">
         {"Blog"}
       </a>
       <a href="/#faq">

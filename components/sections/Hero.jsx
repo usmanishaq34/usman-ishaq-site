@@ -49,9 +49,11 @@ export default function Hero() {
             {" "}
             <div>
               {"Founder of "}
-              <b>
-                {"Digital Vikingz"}
-              </b>
+              <a href="https://digitalvikingz.com/" target="_blank" rel="noopener">
+                <b>
+                  {"Digital Vikingz"}
+                </b>
+              </a>
             </div>
             {" "}
             <div>

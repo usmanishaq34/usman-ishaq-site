@@ -10,6 +10,7 @@ import { Color } from "@tiptap/extension-color"
 import { Table, TableRow, TableHeader, TableCell } from "@tiptap/extension-table"
 import { useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
+import { saveMediaMeta } from "@/lib/media-meta"
 import MediaLibraryModal from "./MediaLibraryModal"
 
 interface Props {
@@ -163,6 +164,10 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
   const [sourceHtml, setSourceHtml] = useState(value)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [uploading, setUploading] = useState(false)
+  // A fresh upload is described (alt text, title) before it is inserted; both are saved on the Media Library record too.
+  const [pendingUpload, setPendingUpload] = useState<{ id: string; url: string; filename: string } | null>(null)
+  const [pendingAlt, setPendingAlt] = useState("")
+  const [pendingTitle, setPendingTitle] = useState("")
   const [showColorPicker, setShowColorPicker] = useState(false)
   // Image button: a small menu with "Upload from computer" and "Choose from media library".
   const [showImageMenu, setShowImageMenu] = useState(false)
@@ -241,6 +246,21 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
     editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run()
   }
 
+  async function insertPendingUpload(e: React.FormEvent) {
+    e.preventDefault()
+    if (!editor || !pendingUpload) return
+    const alt = pendingAlt.trim()
+    const title = pendingTitle.trim()
+    saveMediaMeta(pendingUpload, { alt, title })
+    editor
+      .chain()
+      .focus()
+      .insertContent({ type: "image", attrs: { src: pendingUpload.url, alt, title: title || null, "data-size": "full" } })
+      .run()
+    setPendingUpload(null)
+    toast.success("Image inserted")
+  }
+
   async function handleImageUpload(file: File) {
     if (!editor) return
     setUploading(true)
@@ -249,16 +269,11 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
       formData.append("file", file)
       const res = await fetch("/api/upload", { method: "POST", body: formData })
       if (!res.ok) throw new Error("Upload failed")
-      const { url, alt } = await res.json()
-      editor
-        .chain()
-        .focus()
-        .insertContent({
-          type: "image",
-          attrs: { src: url, alt: alt ?? file.name, "data-size": "full" },
-        })
-        .run()
-      toast.success("Image inserted")
+      const media = (await res.json()) as { id: string; url: string; filename: string }
+      setPendingUpload(media)
+      setPendingAlt("")
+      setPendingTitle(file.name.replace(/.[a-z0-9]+$/i, "").replace(/[-_]+/g, " "))
+      toast.success("Uploaded. Add the alt text, then insert.")
     } catch {
       toast.error("Upload failed")
     } finally {
@@ -549,6 +564,22 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
           </button>
         </div>
       </div>
+
+      {pendingUpload && !showSource && (
+        <form onSubmit={insertPendingUpload} className="flex items-start gap-3 px-3 py-3 border-b border-line bg-accent-soft flex-wrap">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={pendingUpload.url} alt="" className="w-14 h-14 object-cover border border-line flex-shrink-0" />
+          <div className="flex-1 min-w-[220px] grid gap-2">
+            <span className="mono-pill text-accent">Uploaded: {pendingUpload.filename}. Describe it before inserting.</span>
+            <input type="text" value={pendingAlt} onChange={(e) => setPendingAlt(e.target.value)} placeholder="Alt text: what the image shows" className="w-full px-3 py-1.5 border border-line-strong text-sm bg-bg" style={{ borderRadius: 2 }} autoFocus required />
+            <input type="text" value={pendingTitle} onChange={(e) => setPendingTitle(e.target.value)} placeholder="Title (shown on hover)" className="w-full px-3 py-1.5 border border-line-strong text-sm bg-bg" style={{ borderRadius: 2 }} />
+            <div className="flex gap-3 items-center">
+              <button type="submit" className="btn-primary text-xs">Insert image</button>
+              <button type="button" className="text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-ink" onClick={() => setPendingUpload(null)}>Cancel</button>
+            </div>
+          </div>
+        </form>
+      )}
 
       {/* Image size sub-toolbar — shown when image is selected */}
       {editor.isActive("image") && !showSource && (
