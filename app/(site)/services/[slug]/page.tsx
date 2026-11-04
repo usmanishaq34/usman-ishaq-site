@@ -4,6 +4,7 @@ import SiteHeader from "@/components/sections/SiteHeader";
 import SiteFooter from "@/components/sections/SiteFooter";
 import Overlays from "@/components/sections/Overlays";
 import Interactions from "@/components/Interactions";
+import SelfTest from "@/components/SelfTest";
 import { serviceIndex, serviceLoaders } from "@/content/services";
 import { withSeoOverride } from "@/lib/site-content";
 
@@ -124,6 +125,7 @@ export default async function ServicePage({ params }: Props) {
       <SiteFooter />
       <Overlays />
       <Interactions />
+      <SelfTest />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serviceJsonLd(doc) }} />
     </>
   );

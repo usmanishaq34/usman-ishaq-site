@@ -25,6 +25,30 @@ const services = [
 const decode = (s) => s.replace(/&#x27;/g, "'").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&");
 const text = (s) => decode(s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
 
+// Removes every <div> except those whose class matches `keep`, together with
+// the matching closing tags, by tracking nesting depth.
+function unwrapDivs(html, keep) {
+  const out = [];
+  const stack = []; // true = kept div, false = removed div
+  const re = /<div\b([^>]*)>|<\/div>/g;
+  let last = 0;
+  let m;
+  while ((m = re.exec(html))) {
+    out.push(html.slice(last, m.index));
+    last = re.lastIndex;
+    if (m[0] === "</div>") {
+      if (stack.pop()) out.push("</div>");
+      continue;
+    }
+    const cls = (m[1].match(/class="([^"]*)"/) || [])[1] || "";
+    const kept = keep.test(cls.trim());
+    stack.push(kept);
+    if (kept) out.push(`<div class="${cls.trim()}">`);
+  }
+  out.push(html.slice(last));
+  return out.join("");
+}
+
 function clean(html) {
   let h = html;
   h = h.replace(/<link[^>]*>/g, "");
@@ -33,7 +57,9 @@ function clean(html) {
   h = h.replace(/<img[^>]*>/g, "");
   h = h.replace(/<nav[\s\S]*?<\/nav>/g, "");
   h = h.replace(/<\/?section[^>]*>/g, "");
-  h = h.replace(/<\/?div[^>]*>/g, "");
+  // The self-check (checklist + count) keeps its three wrappers; every other
+  // div is unwrapped. Closing tags are matched by walking the markup once.
+  h = unwrapDivs(h, /^(selftest|stlist|stresult)$/);
   h = h.replace(/<article[^>]*>/g, '<div class="deliverable">').replace(/<\/article>/g, "</div>");
   // The agency pricing block ends with a results-page figure; without the
   // figure the heading and link make no sense here.
@@ -44,7 +70,7 @@ function clean(html) {
   h = h.replace(/href="\/(?!\/)([^"]*)"/g, 'href="https://digitalvikingz.com/$1"');
   // Buttons in the site's own classes; every other class attribute goes
   h = h.replace(/class="btn ghost"/g, 'class="btn btn-ghost"').replace(/class="btn"/g, 'class="btn btn-primary"');
-  h = h.replace(/ class="(?!btn|deliverable)[^"]*"/g, "");
+  h = h.replace(/ class="(?!btn|deliverable|selftest|stlist|stresult|stq)[^"]*"/g, "");
   h = h.replace(/ id="[^"]*"/g, "");
   return h.replace(/\s+/g, " ").replace(/> </g, "><").trim();
 }

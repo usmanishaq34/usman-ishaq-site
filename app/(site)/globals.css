@@ -766,3 +766,17 @@ a.svc{display:block;color:inherit}
 .svc-foot p{color:var(--text-2);margin:0 0 22px;font-size:16px;line-height:1.7}
 .svc-foot .svc-cta{margin:0}
 .svc-content section{padding:0}
+
+/* service page: self-check list and buttons inside the article */
+.post-content a.btn,.post-content a.btn:hover{text-decoration:none}
+.post-content a.btn-primary,.post-content a.btn-primary:hover{color:#fff}
+.post-content a.btn-ghost{color:var(--dark-text)}
+.post-content a.btn-ghost:hover{color:var(--orange)}
+.post-content .selftest{margin:0 0 30px}
+.post-content .stlist{display:grid;gap:10px;margin:0 0 22px}
+.post-content .stq{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);background:var(--bg-2);cursor:pointer;font-size:16px;line-height:1.5}
+.post-content .stq input{margin:5px 0 0;accent-color:var(--accent);flex:none}
+.post-content .stq:has(input:checked){border-color:var(--accent)}
+.post-content .stresult{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px}
+.post-content .stresult b{font-family:var(--display);font-size:30px;font-weight:500;color:var(--accent)}
+.post-content .stresult p{margin:0;flex:1 1 240px}
