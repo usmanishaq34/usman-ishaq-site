@@ -605,8 +605,8 @@ header.on-light .burger{border-color:rgba(10,10,10,.2)}
 header.on-light .burger span{background:#0a0a0a}
 .blog-soon{color:var(--dark-muted);padding:30px 0 10px}
 .art.has-img img{display:block;width:100%;height:auto}
-.post .art.has-img{height:auto}
-.bfeat .art.has-img{min-height:0;display:flex;align-items:center}
+.post .art.has-img{height:auto;min-height:120px}
+.bfeat .art.has-img{min-height:200px;display:flex;align-items:center}
 .art.has-img{background:#0c1630}
 .dv-blog-card-image.has-img{aspect-ratio:auto}
 .art .lab{z-index:1}
