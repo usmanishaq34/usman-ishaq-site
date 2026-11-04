@@ -137,7 +137,7 @@ export default function SiteFooter() {
             </h5>
             <ul>
               <li>
-                <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">
+                <a href="https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz" target="_blank" rel="noopener">
                   {"Book a call"}
                 </a>
               </li>

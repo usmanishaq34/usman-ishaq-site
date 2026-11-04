@@ -13,7 +13,7 @@ import { withSeoOverride } from "@/lib/site-content";
 // the SEO fields can be overridden from the dashboard.
 export const revalidate = 3600;
 
-const CALENDLY = "https://calendly.com/usmanishaqsemanticseospecialist/30min";
+const CALENDLY = "https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz";
 const WHATSAPP = "https://wa.me/message/7CLDLUNQWRTTD1";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://usmanishaq.com";
 

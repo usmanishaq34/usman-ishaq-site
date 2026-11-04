@@ -19,7 +19,7 @@ export default function Faq() {
             {"Not here? Ask it on the call. That is what the thirty minutes are for."}
           </p>
           {" "}
-          <a className="btn btn-primary rv d3" style={{marginTop:"20px"}} href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">
+          <a className="btn btn-primary rv d3" style={{marginTop:"20px"}} href="https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz" target="_blank" rel="noopener">
             {"Book a call "}
             <span className="arrow">
               {"→"}

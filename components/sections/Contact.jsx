@@ -21,7 +21,7 @@ export default function Contact() {
           {" "}
           <div className="channels">
             {" "}
-            <a className="channel rv" href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">
+            <a className="channel rv" href="https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz" target="_blank" rel="noopener">
               <div className="ci">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="5" width="18" height="16" rx="2"></rect>
@@ -226,7 +226,7 @@ export default function Contact() {
           {" "}
           <div className="form-ok" id="formOk">
             {"Your email app should open with everything filled in. Prefer to talk? "}
-            <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{textDecoration:"underline",fontWeight:"700"}}>
+            <a href="https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz" target="_blank" rel="noopener" style={{textDecoration:"underline",fontWeight:"700"}}>
               {"Book a time here"}
             </a>
             {"."}

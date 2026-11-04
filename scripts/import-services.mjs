@@ -8,7 +8,7 @@ import path from "node:path";
 
 const AGENCY = process.env.AGENCY_DIR || path.resolve("..", "digital-vikingz-v2", "content", "pages");
 const OUT = path.resolve("content", "services");
-const CALENDLY = "https://calendly.com/usmanishaqsemanticseospecialist/30min";
+const CALENDLY = "https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz";
 const WHATSAPP = "https://wa.me/message/7CLDLUNQWRTTD1";
 
 // Card title on the homepage -> agency slug

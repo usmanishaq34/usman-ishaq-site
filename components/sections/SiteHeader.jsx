@@ -60,7 +60,7 @@ export default function SiteHeader({ light = false } = {}) {
           </li>
         </ul>
         {" "}
-        <a className="btn btn-primary nav-cta" href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">
+        <a className="btn btn-primary nav-cta" href="https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz" target="_blank" rel="noopener">
           {"Book a call "}
           <span className="arrow">
             {"→"}
