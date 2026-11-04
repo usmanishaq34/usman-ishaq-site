@@ -35,6 +35,9 @@ function clean(html) {
   h = h.replace(/<\/?section[^>]*>/g, "");
   h = h.replace(/<\/?div[^>]*>/g, "");
   h = h.replace(/<article[^>]*>/g, '<div class="deliverable">').replace(/<\/article>/g, "</div>");
+  // The agency pricing block ends with a results-page figure; without the
+  // figure the heading and link make no sense here.
+  h = h.replace(/<h3[^>]*>A client property from the results page<\/h3>\s*(<p>)?\s*<a href="\/results"[^>]*>All results<\/a>\s*(<\/p>)?/g, "");
   // Site data tokens
   h = h.replace(/\{\{contact\.calendly\}\}/g, CALENDLY).replace(/\{\{contact\.whatsapp\}\}/g, WHATSAPP).replace(/\{\{contact\.[a-zA-Z.]+\}\}/g, "https://digitalvikingz.com/");
   // Agency-internal links point at the agency site

@@ -761,3 +761,4 @@ a.svc{display:block;color:inherit}
 .svc-foot h2{font-family:var(--display);font-weight:500;font-size:clamp(24px,3vw,32px);margin:0 0 10px;color:var(--text)}
 .svc-foot p{color:var(--text-2);margin:0 0 22px;font-size:16px;line-height:1.7}
 .svc-foot .svc-cta{margin:0}
+.svc-content section{padding:0}
