@@ -76,17 +76,17 @@ export default function SiteFooter() {
             </h5>
             <ul>
               <li>
-                <a href="/#services">
+                <a href="/services/semantic-seo-architecture">
                   {"Semantic SEO Architecture"}
                 </a>
               </li>
               <li>
-                <a href="/#services">
+                <a href="/services/semantic-content-audit">
                   {"Content Audits"}
                 </a>
               </li>
               <li>
-                <a href="/#services">
+                <a href="/services/website-development">
                   {"Website Development"}
                 </a>
               </li>
@@ -96,7 +96,7 @@ export default function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href="/#services">
+                <a href="/services/ai-search-visibility">
                   {"AI Search Visibility"}
                 </a>
               </li>

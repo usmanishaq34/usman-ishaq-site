@@ -41,12 +41,12 @@ export function seedOf(s: string): number {
   return h + 1;
 }
 
-export function Art({ post, label, lit }: { post: PostRow; label: string; lit?: boolean }) {
+/* The category is printed under the image, so the image carries no label. */
+export function Art({ post, lit }: { post: PostRow; label?: string; lit?: boolean }) {
   const img = post.featuredImage;
   return (
     <div className={`art${img ? " has-img" : ""}${lit ? " in" : ""}`} data-seed={seedOf(post.slug)}>
       {img ? <img src={img} alt={post.featuredImageAlt || post.title} loading="lazy" /> : null}
-      <span className="lab">{label}</span>
     </div>
   );
 }

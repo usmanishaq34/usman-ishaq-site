@@ -354,7 +354,7 @@ footer{background:#050912;padding:60px 0 36px;border-top:1px solid var(--line)}
 
 /* responsive */
 @media (max-width:1080px){
-  section{padding:64px 0}
+  section{padding:32px 0}
   .nav ul,.nav-cta{display:none}
   .burger{display:block}
   .mobile-menu{display:block;position:fixed;top:76px;left:0;right:0;background:rgba(8,13,26,.97);border-bottom:1px solid var(--line);padding:10px 24px 24px;transform:translateY(-130%);transition:transform .35s;z-index:85}
@@ -375,7 +375,7 @@ footer{background:#050912;padding:60px 0 36px;border-top:1px solid var(--line)}
 }
 @media (max-width:640px){
   body{font-size:16px}
-  section{padding:44px 0}
+  section{padding:22px 0}
   .wrap{padding:0 16px}
   .hero{padding-top:120px}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -604,7 +604,8 @@ header.on-light .nav ul a:hover{color:var(--orange)}
 header.on-light .burger{border-color:rgba(10,10,10,.2)}
 header.on-light .burger span{background:#0a0a0a}
 .blog-soon{color:var(--dark-muted);padding:30px 0 10px}
-.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.art.has-img{background:#0c1630}
 .art .lab{z-index:1}
 
 /* ===== blog index, after the agency blog ===== */
@@ -630,7 +631,7 @@ header.on-light .burger span{background:#0a0a0a}
 .dv-blog-card{color:inherit;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:all .3s ease;background:var(--bg)}
 .dv-blog-card:hover{border-color:var(--line-strong);box-shadow:0 8px 32px rgba(10,10,10,.06);transform:translateY(-3px)}
 .dv-blog-card-image{aspect-ratio:16/9;overflow:hidden;background:var(--bg-3)}
-.dv-blog-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.dv-blog-card-image img{width:100%;height:100%;object-fit:contain;transition:transform .4s ease}
 .dv-blog-card:hover .dv-blog-card-image img{transform:scale(1.04)}
 .dv-blog-card-image-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg-3) 0%,var(--bg-2) 100%)}
 .dv-blog-card-image-initial{font-family:var(--display);font-size:56px;font-weight:300;color:var(--accent);opacity:.4;font-style:italic}
