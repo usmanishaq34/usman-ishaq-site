@@ -38,9 +38,9 @@ export default function Portfolio() {
         </div>
         {" "}
         <div className="pf-grid" id="pfGrid">
-          <div className="pf rv" data-c="results" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image12.png">
+          <div className="pf rv" data-c="results" data-src="/images/legacy/2025-01-image12.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image12.png" alt="SEO growth chart" />
+              <img loading="lazy" src="/images/legacy/2025-01-image12.webp" alt="SEO growth chart" />
             </div>
             <div className="cap">
               <h4>
@@ -51,9 +51,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="results" data-src="https://usmanishaq.com/wp-content/uploads/2022/04/image2.png">
+          <div className="pf rv" data-c="results" data-src="/images/legacy/2022-04-image2.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2022/04/image2.png" alt="Local home services SEO" />
+              <img loading="lazy" src="/images/legacy/2022-04-image2.webp" alt="Local home services SEO" />
             </div>
             <div className="cap">
               <h4>
@@ -64,9 +64,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="results" data-src="https://usmanishaq.com/wp-content/uploads/2022/04/image13.png">
+          <div className="pf rv" data-c="results" data-src="/images/legacy/2022-04-image13.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2022/04/image13.png" alt="Semantic SEO results" />
+              <img loading="lazy" src="/images/legacy/2022-04-image13.webp" alt="Semantic SEO results" />
             </div>
             <div className="cap">
               <h4>
@@ -77,9 +77,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="results" data-src="https://usmanishaq.com/wp-content/uploads/2023/05/website-drop-down-graph.png">
+          <div className="pf rv" data-c="results" data-src="/images/legacy/2023-05-website-drop-down-graph.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2023/05/website-drop-down-graph.png" alt="On-page SEO recovery" />
+              <img loading="lazy" src="/images/legacy/2023-05-website-drop-down-graph.webp" alt="On-page SEO recovery" />
             </div>
             <div className="cap">
               <h4>
@@ -90,9 +90,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="results" data-src="https://usmanishaq.com/wp-content/uploads/2022/04/image18-1.png">
+          <div className="pf rv" data-c="results" data-src="/images/legacy/2022-04-image18-1.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2022/04/image18-1.png" alt="Search performance" />
+              <img loading="lazy" src="/images/legacy/2022-04-image18-1.webp" alt="Search performance" />
             </div>
             <div className="cap">
               <h4>
@@ -103,9 +103,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="results" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image16.png">
+          <div className="pf rv" data-c="results" data-src="/images/legacy/2025-01-image16.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image16.png" alt="Keyword planning" />
+              <img loading="lazy" src="/images/legacy/2025-01-image16.webp" alt="Keyword planning" />
             </div>
             <div className="cap">
               <h4>
@@ -116,9 +116,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/Web1.png">
+          <div className="pf rv" data-c="web" data-src="/images/legacy/2025-01-Web1.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/Web1.png" alt="Western Rooter" />
+              <img loading="lazy" src="/images/legacy/2025-01-Web1.webp" alt="Western Rooter" />
             </div>
             <div className="cap">
               <h4>
@@ -129,9 +129,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/NCM-Network.png">
+          <div className="pf rv" data-c="web" data-src="/images/legacy/2025-01-NCM-Network.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/NCM-Network.png" alt="NCM Network" />
+              <img loading="lazy" src="/images/legacy/2025-01-NCM-Network.webp" alt="NCM Network" />
             </div>
             <div className="cap">
               <h4>
@@ -142,9 +142,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/Prestige.png">
+          <div className="pf rv" data-c="web" data-src="/images/legacy/2025-01-Prestige.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/Prestige.png" alt="Prestige" />
+              <img loading="lazy" src="/images/legacy/2025-01-Prestige.webp" alt="Prestige" />
             </div>
             <div className="cap">
               <h4>
@@ -155,9 +155,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image51.png">
+          <div className="pf rv" data-c="web" data-src="/images/legacy/2025-01-image51.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image51.png" alt="Local B2B website" />
+              <img loading="lazy" src="/images/legacy/2025-01-image51.webp" alt="Local B2B website" />
             </div>
             <div className="cap">
               <h4>
@@ -168,9 +168,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/Marketing-Automation-%E2%80%93-Top-Rank-Seo-01-20-2025_09_07_AM.png">
+          <div className="pf rv" data-c="web" data-src="/images/legacy/2025-01-Marketing-Automation-Top-Rank-Seo-01-20-2025_09_07_AM.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/Marketing-Automation-%E2%80%93-Top-Rank-Seo-01-20-2025_09_07_AM.png" alt="Top Rank SEO" />
+              <img loading="lazy" src="/images/legacy/2025-01-Marketing-Automation-Top-Rank-Seo-01-20-2025_09_07_AM.webp" alt="Top Rank SEO" />
             </div>
             <div className="cap">
               <h4>
@@ -181,9 +181,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/CommentGuard.png">
+          <div className="pf rv" data-c="web" data-src="/images/legacy/2025-01-CommentGuard.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/CommentGuard.png" alt="Comment Guard" />
+              <img loading="lazy" src="/images/legacy/2025-01-CommentGuard.webp" alt="Comment Guard" />
             </div>
             <div className="cap">
               <h4>
@@ -194,9 +194,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/Alpine-Tails.png">
+          <div className="pf rv" data-c="web" data-src="/images/legacy/2025-01-Alpine-Tails.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/Alpine-Tails.png" alt="Alpine Tails" />
+              <img loading="lazy" src="/images/legacy/2025-01-Alpine-Tails.webp" alt="Alpine Tails" />
             </div>
             <div className="cap">
               <h4>
@@ -207,9 +207,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/Tracket-.png">
+          <div className="pf rv" data-c="web" data-src="/images/legacy/2025-01-Tracket-.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/Tracket-.png" alt="Tracket" />
+              <img loading="lazy" src="/images/legacy/2025-01-Tracket-.webp" alt="Tracket" />
             </div>
             <div className="cap">
               <h4>
@@ -220,9 +220,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image2.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-image2.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image2.png" alt="Keep trees healthy" />
+              <img loading="lazy" src="/images/legacy/2025-01-image2.webp" alt="Keep trees healthy" />
             </div>
             <div className="cap">
               <h4>
@@ -233,9 +233,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image6.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-image6.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image6.png" alt="Backup and migration" />
+              <img loading="lazy" src="/images/legacy/2025-01-image6.webp" alt="Backup and migration" />
             </div>
             <div className="cap">
               <h4>
@@ -246,9 +246,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image22.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-image22.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image22.png" alt="Instagram automation" />
+              <img loading="lazy" src="/images/legacy/2025-01-image22.webp" alt="Instagram automation" />
             </div>
             <div className="cap">
               <h4>
@@ -259,9 +259,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image4.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-image4.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image4.png" alt="AI statistics" />
+              <img loading="lazy" src="/images/legacy/2025-01-image4.webp" alt="AI statistics" />
             </div>
             <div className="cap">
               <h4>
@@ -272,9 +272,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/Spy-on-Competitors-with-These-Facebook-Analysis-Tools-Free-Paid-Google-Docs-01-13-2025_02_20_PM.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-Spy-on-Competitors-with-These-Facebook-Analysis-Tools-Free-Paid-Google-Docs-01-13-2025_02_20_PM.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/Spy-on-Competitors-with-These-Facebook-Analysis-Tools-Free-Paid-Google-Docs-01-13-2025_02_20_PM.png" alt="Competitor analysis tools" />
+              <img loading="lazy" src="/images/legacy/2025-01-Spy-on-Competitors-with-These-Facebook-Analysis-Tools-Free-Paid-Google-Docs-01-13-2025_02_20_PM.webp" alt="Competitor analysis tools" />
             </div>
             <div className="cap">
               <h4>
@@ -285,9 +285,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2022/04/image6-1.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2022-04-image6-1.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2022/04/image6-1.png" alt="Product descriptions" />
+              <img loading="lazy" src="/images/legacy/2022-04-image6-1.webp" alt="Product descriptions" />
             </div>
             <div className="cap">
               <h4>
@@ -298,9 +298,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image5-1.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-image5-1.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image5-1.png" alt="Turning haters into fans" />
+              <img loading="lazy" src="/images/legacy/2025-01-image5-1.webp" alt="Turning haters into fans" />
             </div>
             <div className="cap">
               <h4>
@@ -311,9 +311,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image1.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-image1.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image1.png" alt="LinkedIn content" />
+              <img loading="lazy" src="/images/legacy/2025-01-image1.webp" alt="LinkedIn content" />
             </div>
             <div className="cap">
               <h4>
@@ -324,9 +324,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image3.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-image3.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image3.png" alt="Impact of liquidation" />
+              <img loading="lazy" src="/images/legacy/2025-01-image3.webp" alt="Impact of liquidation" />
             </div>
             <div className="cap">
               <h4>
@@ -337,9 +337,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="content" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/image1-1.png">
+          <div className="pf rv" data-c="content" data-src="/images/legacy/2025-01-image1-1.webp">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/image1-1.png" alt="About Solana" />
+              <img loading="lazy" src="/images/legacy/2025-01-image1-1.webp" alt="About Solana" />
             </div>
             <div className="cap">
               <h4>
