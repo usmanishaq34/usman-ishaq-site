@@ -28,7 +28,7 @@ export default function Services() {
         {" "}
         <div className="svc-grid">
           {" "}
-          <article className="svc rv">
+          <a className="svc rv" href="/services/semantic-seo-architecture">
             <div className="ico">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="3"></circle>
@@ -57,9 +57,9 @@ export default function Services() {
                 {"Site structure"}
               </li>
             </ul>
-          </article>
+          </a>
           {" "}
-          <article className="svc rv d1">
+          <a className="svc rv d1" href="/services/semantic-content-audit">
             <div className="ico">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="7"></circle>
@@ -85,9 +85,9 @@ export default function Services() {
                 {"Intent match"}
               </li>
             </ul>
-          </article>
+          </a>
           {" "}
-          <article className="svc rv d2">
+          <a className="svc rv d2" href="/services/website-development">
             <div className="ico">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect x="3" y="4" width="18" height="16" rx="2"></rect>
@@ -115,7 +115,7 @@ export default function Services() {
                 {"Next.js"}
               </li>
             </ul>
-          </article>
+          </a>
           {" "}
         </div>
         {" "}
@@ -183,7 +183,7 @@ export default function Services() {
             </ul>
           </article>
           {" "}
-          <article className="svc rv d2">
+          <a className="svc rv d2" href="/services/ai-search-visibility">
             <div className="ico">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9L9.5 8z"></path>
@@ -207,7 +207,7 @@ export default function Services() {
                 {"Authority signals"}
               </li>
             </ul>
-          </article>
+          </a>
           {" "}
         </div>
         {" "}
@@ -222,7 +222,7 @@ export default function Services() {
         {" "}
         <div className="svc-grid">
           {" "}
-          <article className="svc rv">
+          <a className="svc rv" href="/services/semantic-content-production">
             <div className="ico">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 20h4L19 9l-4-4L4 16z"></path>
@@ -247,9 +247,9 @@ export default function Services() {
                 {"Blog clusters"}
               </li>
             </ul>
-          </article>
+          </a>
           {" "}
-          <article className="svc rv d1">
+          <a className="svc rv d1" href="/services/social-media-management">
             <div className="ico">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect x="3" y="3" width="18" height="18" rx="4"></rect>
@@ -275,9 +275,9 @@ export default function Services() {
                 {"Facebook"}
               </li>
             </ul>
-          </article>
+          </a>
           {" "}
-          <article className="svc rv d2">
+          <a className="svc rv d2" href="/services/white-label-semantic-seo">
             <div className="ico">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="9" cy="8" r="3"></circle>
@@ -303,7 +303,7 @@ export default function Services() {
                 {"Briefs + content"}
               </li>
             </ul>
-          </article>
+          </a>
           {" "}
         </div>
         {" "}

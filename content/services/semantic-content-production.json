@@ -1,0 +1,50 @@
+{
+ "slug": "semantic-content-production",
+ "cardTitle": "Semantic Content Production",
+ "title": "Semantic Content Production | Briefs to Published Pages",
+ "description": "The execution service. Each node of the topical map becomes a brief, a written page, a configured page, and a published page in roadmap order.",
+ "h1": "Semantic Content Production: Briefs, Writing, and Publishing in Sequence",
+ "standfirst": "Semantic Content Production turns each node of the topical map into a published page. Each page gets a brief, the writing, the on-page configuration, and its internal links. The source term vector governs the wording, and the roadmap sets the publishing order.",
+ "sections": [
+  {
+   "id": "b2",
+   "heading": "What pipeline does Semantic Content Production run for each page?",
+   "html": "<h2>What pipeline does Semantic Content Production run for each page?</h2><p>Every page passes all six stages. The check at each stage is a written gate, not a feeling.</p><div class=\"deliverable\"><h3>Brief</h3><dl><dt>Input</dt><dd>The map node: entity, attributes, predicate, page decision.</dd><dt>Output</dt><dd>The brief document.</dd><dt>Check</dt><dd>Brief QA against the node and the vocabulary.</dd></dl></div><div class=\"deliverable\"><h3>Draft</h3><dl><dt>Input</dt><dd>The brief.</dd><dt>Output</dt><dd>The first draft, section by section.</dd><dt>Check</dt><dd>Vocabulary check: canonical terms only, head term as subject.</dd></dl></div><div class=\"deliverable\"><h3>Edit</h3><dl><dt>Input</dt><dd>The draft.</dd><dt>Output</dt><dd>The edited page.</dd><dt>Check</dt><dd>Sentence rules: one fact per sentence, no padding, no repeated phrases across pages.</dd></dl></div><div class=\"deliverable\"><h3>Configure</h3><dl><dt>Input</dt><dd>The edited page.</dd><dt>Output</dt><dd>The CMS page with title, ids, schema, captions, and internal links.</dd><dt>Check</dt><dd>Template QA: block order, main component, identity.</dd></dl></div><div class=\"deliverable\"><h3>Publish</h3><dl><dt>Input</dt><dd>The configured page.</dd><dt>Output</dt><dd>The live page, in roadmap order.</dd><dt>Check</dt><dd>Index check within the crawl cycle.</dd></dl></div><div class=\"deliverable\"><h3>Measure</h3><dl><dt>Input</dt><dd>The live page.</dd><dt>Output</dt><dd>Search Console per template, clicks and impressions by page group.</dd><dt>Check</dt><dd>90-day review: keep, rewrite, or merge.</dd></dl></div>"
+  },
+  {
+   "id": "b3",
+   "heading": "How does Content Production work?",
+   "html": "<h2>How does Content Production work?</h2><p><b>Production is the map, executed in order.</b></p><p>No page is written without a brief. No brief is written without a node on the map. No page goes live out of sequence. The discipline separates a content network from a blog. The six-stage pipeline below runs for every node, and each stage carries a check the page passes or fails.</p>"
+  },
+  {
+   "id": "b4",
+   "heading": "Which writing rules does Semantic Content Production apply to every page?",
+   "html": "<h2>Which writing rules does Semantic Content Production apply to every page?</h2><ol><li><b>Head term as subject</b><span>The heaviest term in the query is the subject of the opening sentence and of the triples.</span></li><li><b>One fact per sentence</b><span>A verifiable claim sits alone. Compound claims are split.</span></li><li><b>Consensus facts in consensus wording</b><span>Facts the field agrees on use the field&#x27;s terms. Unique claims carry their evidence in the same block.</span></li><li><b>No padding</b><span>Sentences that list uses without naming an attribute are cut. Length is not a target.</span></li><li><b>No shared phrases across pages</b><span>An n-gram check runs across the site before launch and every ninety days. Repeated four-word phrases are rewritten.</span></li><li><b>Captions under every image</b><span>One declarative sentence: entity, attribute, and relation to the section.</span></li></ol>"
+  },
+  {
+   "id": "b5",
+   "heading": "Which Google documents does Content Production build on?",
+   "html": "<h2>Which Google documents does Content Production build on?</h2><p>Patents describe systems Google has invented. They are not confirmed ranking factors. The work is built so a page passes the check each document describes.</p><ul><li><a href=\"https://patents.google.com/patent/US9940367B1/en\" rel=\"noopener\">US 9,940,367 B1: Scoring candidate answer passages (Google)</a><span>A Google patent describes scoring answer passages by term match and position; the head term opens each block here.</span></li><li><a href=\"https://patents.google.com/patent/US11354342B2/en\" rel=\"noopener\">US 11,354,342 B2: Contextual estimation of link information gain (Google)</a><span>A Google patent describes scoring the information a document adds beyond pages already viewed; unique claims here carry their evidence.</span></li></ul>"
+  },
+  {
+   "id": "b6",
+   "heading": "Who is Semantic Content Production for?",
+   "html": "<h2>Who is Semantic Content Production for?</h2><b>Teams that want the map executed to the standard it was built to</b><p>The architecture exists. The team does not have the hours.</p><b>Sites publishing in more than one language</b><p>Same brief, same block sequence, native-language editors for German, Spanish, and Italian.</p><b>Sites whose current content failed the audit</b><p>Rewrite in sequence, page by page, against the new vocabulary.</p><b>Not the right fit</b><p>A site without a map or an audit. Production without page decisions produces the cannibalization it is meant to prevent.</p>"
+  },
+  {
+   "id": "b7",
+   "heading": "How is Content Production priced and delivered?",
+   "html": "<h2>How is Content Production priced and delivered?</h2><dl><dt>Shape</dt><dd>Monthly</dd><dt>Pricing basis</dt><dd>Sized by the roadmap, not by a page count</dd><dt>What you receive</dt><dd>Pages live in sequence, with the per-template measurement</dd></dl><p>Exact scope is quoted in writing after the strategy call. <a href=\"https://digitalvikingz.com/knowledge/semantic-seo-cost\">How semantic SEO is priced</a>.</p><h3>A client property from the results page</h3><a href=\"https://digitalvikingz.com/results\">All results</a>"
+  },
+  {
+   "id": "b9",
+   "heading": "Questions about Content Production",
+   "html": "<h2>Questions about Content Production</h2><details open=\"\"><summary>Who writes the pages?</summary>The in-house editorial team under Abad Aslam, with native-language editors for German, Spanish, and Italian. Every page has a named editor who signs off the checks.</details><details><summary>Can our writers use your briefs and your checks?</summary>Yes. The architecture path covers exactly that. The brief format, the vocabulary, and the six checks are handed over in the workshop.</details><details><summary>How is the keep, rewrite, or merge call made at ninety days?</summary>The page decision is revisited first. A page that fails the page test on review is merged into its parent. One that passes is rewritten against the live results.</details><details><summary>Which CMS platforms do you publish into?</summary>WordPress, Shopify, Wix, Squarespace, and Next.js with a headless CMS. The configure stage is done in your system, not in a document.</details><details><summary>Do you write product descriptions and listings?</summary>Yes, as item sets. Each item gets sentences that are true only of that item. The n-gram check catches template filler across the set.</details><details><summary>Does Content Production rewrite existing articles on their current URLs?</summary>Existing pages are matched to map nodes first. A page that matches a node is rewritten in sequence on its current URL. Pages with no node get a merge or prune decision.</details><details><summary>How do we review pages before they go live?</summary>Your named contact reviews each edited page before the configure stage. Fact corrections go back into the draft. The named editor then signs off the checks again.</details><details><summary>How are disagreements over wording handled?</summary>Facts go to your subject-matter contact. Vocabulary follows the source term vector, so a disputed term changes there and then site-wide. One-off wording that breaks the vocabulary is flagged before it ships.</details><details><summary>Do you translate our English pages?</summary>No page is translated word for word. A native-language editor writes each language version from the same brief. Each version follows its own vocabulary.</details><details><summary>What access does Content Production need?</summary>An editor-level CMS login for the configure and publish stages. Read access to Search Console for the measure stage. A subject-matter contact who answers fact questions.</details>"
+  }
+ ],
+ "cta": {
+  "heading": "Talk through the scope",
+  "text": "Thirty minutes with the founder. Your site open, the page decisions ahead, the scope that fits."
+ },
+ "source": "https://digitalvikingz.com/services/semantic-content-production"
+}

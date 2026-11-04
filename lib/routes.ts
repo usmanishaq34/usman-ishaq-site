@@ -1,7 +1,10 @@
 // Pages the dashboard can edit. The homepage has editable sections and SEO;
-// the blog index has editable SEO (its posts come from the dashboard).
+// the blog index and the service pages have editable SEO (their body comes
+// from the dashboard's posts and from content/services respectively).
 
-export type RouteKind = "core";
+import { serviceIndex } from "@/content/services";
+
+export type RouteKind = "core" | "service";
 
 export type Route = {
   path: string;
@@ -30,6 +33,16 @@ export const routes: Route[] = [
     kind: "core",
     priority: 0.8,
   },
+  ...serviceIndex.map(
+    (s): Route => ({
+      path: `/services/${s.slug}`,
+      label: s.cardTitle,
+      title: `${s.title} | Usman Ishaq`,
+      description: s.description,
+      kind: "service",
+      priority: 0.8,
+    }),
+  ),
 ];
 
 export const byPath = new Map(routes.map((r) => [r.path, r]));

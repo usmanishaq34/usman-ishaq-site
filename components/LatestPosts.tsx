@@ -1,12 +1,12 @@
 import { prisma } from "@/lib/db";
 import { CategoryFilters, FeaturedCard, PostCard, catSlug, postCardSelect, type PostRow } from "@/components/PostCard";
 
-const PER_TAB = 6;
+const PER_TAB = 3;
 
 /* The homepage blog section. The newest post is the featured card. The grid
-   holds the newest six posts overall plus the newest six of every category,
-   so each filter tab has up to six posts to show; the page script shows at
-   most six at a time (components/Interactions.jsx). */
+   holds the newest three posts overall plus the newest three of every category,
+   so each filter tab has up to three posts to show; the page script shows at
+   most three at a time (components/Interactions.jsx). */
 export default async function LatestPosts() {
   const all: PostRow[] = await prisma.post
     .findMany({

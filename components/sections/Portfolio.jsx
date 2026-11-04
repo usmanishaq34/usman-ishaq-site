@@ -168,9 +168,9 @@ export default function Portfolio() {
               </span>
             </div>
           </div>
-          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/Marketing-Automation-\u2013-Top-Rank-Seo-01-20-2025_09_07_AM.png">
+          <div className="pf rv" data-c="web" data-src="https://usmanishaq.com/wp-content/uploads/2025/01/Marketing-Automation-%E2%80%93-Top-Rank-Seo-01-20-2025_09_07_AM.png">
             <div className="shot">
-              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/Marketing-Automation-\u2013-Top-Rank-Seo-01-20-2025_09_07_AM.png" alt="Top Rank SEO" />
+              <img loading="lazy" src="https://usmanishaq.com/wp-content/uploads/2025/01/Marketing-Automation-%E2%80%93-Top-Rank-Seo-01-20-2025_09_07_AM.png" alt="Top Rank SEO" />
             </div>
             <div className="cap">
               <h4>

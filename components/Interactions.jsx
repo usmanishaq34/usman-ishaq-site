@@ -330,9 +330,9 @@ export default function Interactions() {
       bfilters.addEventListener("click", (e) => {
         const b = e.target.closest(".bfilter"); if (!b) return;
         bfilters.querySelectorAll(".bfilter").forEach((x) => x.classList.toggle("on", x === b));
-        // Each tab shows at most six posts: the newest six overall, or the newest six of that category.
+        // Each tab shows at most three posts: the newest three overall, or the newest three of that category.
         const f = b.dataset.f; let shown = 0;
-        document.querySelectorAll("#bgrid .post").forEach((p) => { const match = f === "all" || p.dataset.c === f; const show = match && shown < 6; if (show) shown++; p.classList.toggle("hide", !show); });
+        document.querySelectorAll("#bgrid .post").forEach((p) => { const match = f === "all" || p.dataset.c === f; const show = match && shown < 3; if (show) shown++; p.classList.toggle("hide", !show); });
       });
     }
 
@@ -347,6 +347,29 @@ export default function Interactions() {
       burger.onclick = () => mm.classList.toggle("open");
       mm.querySelectorAll("a").forEach((a) => (a.onclick = () => mm.classList.remove("open")));
     }
+
+    /* ---------- Calendly popup ---------- */
+    // Booking links open Calendly in a popup instead of a new tab; the widget
+    // loads on the first click. If it fails to load, the link opens normally.
+    let calendlyLoading = null;
+    const loadCalendly = () => {
+      if (window.Calendly) return Promise.resolve();
+      if (calendlyLoading) return calendlyLoading;
+      calendlyLoading = new Promise((resolve, reject) => {
+        const css = document.createElement("link"); css.rel = "stylesheet"; css.href = "https://assets.calendly.com/assets/external/widget.css"; document.head.appendChild(css);
+        const js = document.createElement("script"); js.src = "https://assets.calendly.com/assets/external/widget.js"; js.async = true;
+        js.onload = () => resolve(); js.onerror = () => { calendlyLoading = null; reject(new Error("Calendly failed to load")); };
+        document.head.appendChild(js);
+      });
+      return calendlyLoading;
+    };
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href*="calendly.com"]');
+      if (!a || editing || e.button !== 0 || e.metaKey || e.ctrlKey) return;
+      e.preventDefault();
+      const href = a.href;
+      loadCalendly().then(() => window.Calendly.initPopupWidget({ url: href })).catch(() => window.open(href, "_blank", "noopener"));
+    });
 
     /* ---------- lead form ---------- */
     const leadForm = $("leadForm");

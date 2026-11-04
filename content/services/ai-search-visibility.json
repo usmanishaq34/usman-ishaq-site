@@ -1,0 +1,50 @@
+{
+ "slug": "ai-search-visibility",
+ "cardTitle": "AI Search Visibility",
+ "title": "LLM and AI Search Visibility | Cited by ChatGPT, Perplexity",
+ "description": "Structural work that makes pages candidates for citation in generative answers: independent passages, named authors, one fact per sentence, corroboration.",
+ "h1": "AI Search Visibility: Getting Cited by AI Overviews, ChatGPT, Perplexity, and Gemini",
+ "standfirst": "AI Search Visibility is the service that makes a site's pages candidates for citation in generative answers. The work fixes the structural layer those systems read: passage independence, author and organization identity, one fact per sentence, and corroborated claims.",
+ "sections": [
+  {
+   "id": "b2",
+   "heading": "What does AI Search Visibility check on each page?",
+   "html": "<h2>What does AI Search Visibility check on each page?</h2><p>Six requirements, each tied to a stage in the pipeline. Each one is tested before and after.</p><div class=\"deliverable\"><h3>Passage independence</h3><dl><dt>What the system does</dt><dd>Passages are selected, summarized one by one, then verified one by one.</dd><dt>What the page needs</dt><dd>Every H2 block opens with a declarative that answers on its own.</dd><dt>How it is tested</dt><dd>Lift each block out of the page. Does it still make sense?</dd></dl></div><div class=\"deliverable\"><h3>One fact per sentence</h3><dl><dt>What the system does</dt><dd>A summary sentence is matched to a passage by meaning.</dd><dt>What the page needs</dt><dd>Each verifiable claim sits alone with entity, attribute, and value.</dd><dt>How it is tested</dt><dd>Sentence audit on the core pages.</dd></dl></div><div class=\"deliverable\"><h3>Corroborated wording</h3><dl><dt>What the system does</dt><dd>Confidence rises with the number of trustworthy documents that agree.</dd><dt>What the page needs</dt><dd>Consensus facts in the wording the field uses. Unique claims followed by their evidence.</dd><dt>How it is tested</dt><dd>Cross-source check for each core claim.</dd></dl></div><div class=\"deliverable\"><h3>Author and organization identity</h3><dl><dt>What the system does</dt><dd>Trust is read from author, domain, and inbound links.</dd><dt>What the page needs</dt><dd>A named author with a profile on every page. An identity block one click away.</dd><dt>How it is tested</dt><dd>Identity audit across templates.</dd></dl></div><div class=\"deliverable\"><h3>Image text agreement</h3><dl><dt>What the system does</dt><dd>Captions and text inside images are read as content.</dd><dt>What the page needs</dt><dd>Every diagram and screenshot carries text that agrees with the page.</dd><dt>How it is tested</dt><dd>Image audit.</dd></dl></div><div class=\"deliverable\"><h3>Next-step coverage</h3><dl><dt>What the system does</dt><dd>The system generates drill-down and next-step queries.</dd><dt>What the page needs</dt><dd>The three to five follow-up questions each have a block or a page.</dd><dt>How it is tested</dt><dd>Augmentation map per core query.</dd></dl></div>"
+  },
+  {
+   "id": "b3",
+   "heading": "How does AI Search Visibility work?",
+   "html": "<h2>How does AI Search Visibility work?</h2><p><b>Generative systems cite passages, not pages.</b></p><p>Google&#x27;s filing on its generative search describes selecting a handful of documents per query. The filing then describes splitting them into passages and linking each summary sentence to a passage that verifies it. Confidence rises with the number of trustworthy documents that agree. The work here makes every passage on the site pass that check.</p>"
+  },
+  {
+   "id": "b4",
+   "heading": "How does an AI Search Visibility engagement run?",
+   "html": "<h2>How does an AI Search Visibility engagement run?</h2><ol><li><b>Prompt set and baseline</b><span>A fixed prompt set per core query, run on each system. The record shows which sentences cite the site and which cite competitors.</span></li><li><b>Structural fixes</b><span>Ids on every block, author and identity blocks, caption blocks, the sentence rewrite on core pages.</span></li><li><b>Corroboration pass</b><span>Core claims checked against authoritative sources. Consensus wording adopted. Evidence attached to claims only this site makes.</span></li><li><b>Augmentation coverage</b><span>Next-step questions answered on the page or in the cluster.</span></li><li><b>Re-run and report</b><span>The same prompt set, monthly. The sentence-level record is the report.</span></li></ol>"
+  },
+  {
+   "id": "b5",
+   "heading": "Which Google documents does AI Search Visibility build on?",
+   "html": "<h2>Which Google documents does AI Search Visibility build on?</h2><p>Patents describe systems Google has invented. They are not confirmed ranking factors. The work is built so a page passes the check each document describes.</p><ul><li><a href=\"https://patents.google.com/patent/US11769017B1/en\" rel=\"noopener\">US 11,769,017 B1: Generative summaries for search results (Google)</a><span>A Google patent describes linking parts of a generated summary to sources by embedding similarity; each sentence here carries one fact to match.</span></li><li><a href=\"https://patents.google.com/patent/US20240289407A1/en\" rel=\"noopener\">US 2024/0289407 A1: Search with stateful chat (Google, pending application)</a><span>Google&#x27;s pending generative search filing describes rating confidence by how many trustworthy documents verify each sentence; the corroboration pass targets it.</span></li></ul>"
+  },
+  {
+   "id": "b6",
+   "heading": "Who is AI Search Visibility for?",
+   "html": "<h2>Who is AI Search Visibility for?</h2><b>Brands whose buyers ask an AI before they search</b><p>The answer names three vendors. The work is being one of them.</p><b>Publishers and knowledge sites losing clicks to AI answers</b><p>Being cited is the remaining path to the click, and to being named.</p><b>Healthcare, finance, and legal sites</b><p>Generative answers in these fields draw from sources with visible authorship and corroborated claims.</p><b>Not the right fit</b><p>A site with no pages to cite yet. A new site starts with the architecture. AI visibility is a layer on pages that exist.</p>"
+  },
+  {
+   "id": "b7",
+   "heading": "How is AI Search Visibility priced and delivered?",
+   "html": "<h2>How is AI Search Visibility priced and delivered?</h2><dl><dt>Shape</dt><dd>Project or monthly</dd><dt>Pricing basis</dt><dd>Project for the structural pass; monthly for the prompt set, corroboration, and coverage</dd><dt>What you receive</dt><dd>The sentence-level citation record, updated each month</dd></dl><p>Exact scope is quoted in writing after the strategy call. <a href=\"https://digitalvikingz.com/knowledge/semantic-seo-cost\">How semantic SEO is priced</a>.</p><h3>A client property from the results page</h3><a href=\"https://digitalvikingz.com/results\">All results</a>"
+  },
+  {
+   "id": "b9",
+   "heading": "Questions about AI Search Visibility",
+   "html": "<h2>Questions about AI Search Visibility</h2><details open=\"\"><summary>Can you guarantee citations?</summary>No. The systems choose. The work makes every passage on the site a candidate that passes the checks those systems describe. The record shows which sentences get cited and which do not.</details><details><summary>Is this the same as GEO or AEO?</summary>Same work, different labels. GEO, AEO, and LLM SEO all name the structural layer this service fixes. The label changes nothing in the method.</details><details><summary>Do we need schema markup?</summary>Schema supports the identity checks. Schema does not replace named authors and visible facts. A page with perfect schema and anonymous text is still anonymous.</details><details><summary>Does this change our Google rankings?</summary>The same structure serves both. Passage ranking, deduplication, and the reviews system are deployed Google systems that read the same units. Nothing here trades one for the other.</details><details><summary>Does Search Console show AI traffic?</summary>Partly. Search Console&#x27;s generative AI features report covers Google&#x27;s surfaces where available. No tool shows all of it. The prompt-set record, run by hand or by script, stays the measure.</details><details><summary>Which systems do you check?</summary>AI Overviews and AI Mode, ChatGPT, Perplexity, Gemini, and Claude. The set is fixed at the start and does not change during the engagement, so the months compare.</details><details><summary>What access does the work need?</summary>Edit access to the CMS for the structural fixes, or a developer on your side who applies them. Read access to Search Console. Author names and profile facts from your team.</details><details><summary>Who writes the author profiles?</summary>Your team supplies the facts: names, roles, credentials, and profile links. We write the profile pages and the identity block from those facts. No author is invented.</details><details><summary>Which existing pages get the sentence rewrite first?</summary>Existing pages are the raw material. Core pages get the sentence rewrite first. Other pages follow in the order of the queries they serve.</details><details><summary>Does this work for pages in other languages?</summary>Yes. The prompt set is built per language. Each language version gets its own citation record.</details><details><summary>Does AI Search Visibility need Authority Signals too?</summary>Not always. The filing names inbound links as one trust input among three. Author and domain identity are fixed in this service, and links belong to Authority Signals.</details>"
+  }
+ ],
+ "cta": {
+  "heading": "Talk through the scope",
+  "text": "Thirty minutes with the founder. Your site open, the page decisions ahead, the scope that fits."
+ },
+ "source": "https://digitalvikingz.com/services/ai-search-visibility"
+}

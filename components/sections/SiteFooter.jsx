@@ -125,12 +125,7 @@ export default function SiteFooter() {
               </li>
               <li>
                 <a href="/blog">
-                  {"Semantic SEO hub"}
-                </a>
-              </li>
-              <li>
-                <a href="/blog">
-                  {"Content writing hub"}
+                  {"Blog"}
                 </a>
               </li>
             </ul>

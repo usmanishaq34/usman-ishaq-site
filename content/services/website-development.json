@@ -1,0 +1,50 @@
+{
+ "slug": "website-development",
+ "cardTitle": "Website Design and Development",
+ "title": "Website Development | Built for Structure Google Reads",
+ "description": "Builds or migrates the site the architecture needs: main component rendered without JavaScript, block order matched to the map, every URL mapped.",
+ "h1": "Website Development for Semantic SEO: WordPress, Shopify, Wix, Squarespace, and Next.js",
+ "standfirst": "Website Development builds or migrates the site the architecture needs. The main component renders without JavaScript, and block order matches the map. Every page type gets its template, and migrations move every URL and asset.",
+ "sections": [
+  {
+   "id": "b2",
+   "heading": "Which platforms does Website Development build on?",
+   "html": "<h2>Which platforms does Website Development build on?</h2><p>Five platforms, chosen by what the architecture needs, not by preference.</p><div class=\"deliverable\"><h3>WordPress</h3><dl><dt>Best fit</dt><dd>Service businesses, content networks, local sites</dd><dt>Rendering and control</dt><dd>Server-rendered. Full template control.</dd><dt>What to know</dt><dd>Plugin bloat raises DOM size. Themes are replaced, not patched.</dd></dl></div><div class=\"deliverable\"><h3>Shopify</h3><dl><dt>Best fit</dt><dd>Ecommerce with a product catalog</dd><dt>Rendering and control</dt><dd>Server-rendered Liquid. Theme-limited.</dd><dt>What to know</dt><dd>Product and collection paths are fixed. Filters need theme work.</dd></dl></div><div class=\"deliverable\"><h3>Wix</h3><dl><dt>Best fit</dt><dd>Small local businesses, single-location services</dd><dt>Rendering and control</dt><dd>Server-rendered. Editor-limited.</dd><dt>What to know</dt><dd>Custom code elements for calculators and estimators.</dd></dl></div><div class=\"deliverable\"><h3>Squarespace</h3><dl><dt>Best fit</dt><dd>Portfolios, small practices</dd><dt>Rendering and control</dt><dd>Server-rendered. Limited block control.</dd><dt>What to know</dt><dd>Fewer page types. Fine when the map is small.</dd></dl></div><div class=\"deliverable\"><h3>Next.js</h3><dl><dt>Best fit</dt><dd>SaaS, programmatic pages, headless builds</dd><dt>Rendering and control</dt><dd>Static or server-rendered. Full control.</dd><dt>What to know</dt><dd>Needs a developer on your side or ours for changes.</dd></dl></div>"
+  },
+  {
+   "id": "b3",
+   "heading": "How does Website Development work?",
+   "html": "<h2>How does Website Development work?</h2><p><b>A site is letters, pixels, and bytes, and a search engine reads all three.</b></p><p>The architecture decides what each page is and what its main component does. Development is where that decision either survives or dies. A calculator injected by script after load, a share bar under the H1, a category page with no filter: each one undoes the plan. The build rules below are the plan, enforced in code.</p>"
+  },
+  {
+   "id": "b4",
+   "heading": "Which build rules does Website Development enforce?",
+   "html": "<h2>Which build rules does Website Development enforce?</h2><ol><li><b>Main component without JavaScript</b><span>The centerpiece is in the HTML. Scripts enhance it. They do not create it.</span></li><li><b>DOM order equals rendered order</b><span>No CSS reordering of content blocks. One sequence for every system that reads the page.</span></li><li><b>Typed values as text</b><span>Prices, dates, addresses, and counts are text on the page, with units. Never icons alone.</span></li><li><b>Caption block under every image</b><span>Image and caption are two adjacent blocks. The caption is a sentence.</span></li><li><b>Stable id on every heading</b><span>Every H2 and H3 carries an id that does not change on republish.</span></li><li><b>Filter on every listing page</b><span>Any page with more than one product or provider carries a working filter on at least two attributes.</span></li><li><b>No empty containers</b><span>Spacer divs and empty grid cells are removed. Each one renders as a block with nothing in it.</span></li><li><b>Identity block one click from every page</b><span>Organization name, address, contact, and author profiles reachable from the footer.</span></li></ol>"
+  },
+  {
+   "id": "b5",
+   "heading": "Which Google documents does Website Development build on?",
+   "html": "<h2>Which Google documents does Website Development build on?</h2><p>Patents describe systems Google has invented. They are not confirmed ranking factors. The work is built so a page passes the check each document describes.</p><ul><li><a href=\"https://patents.google.com/patent/US12393768B2/en\" rel=\"noopener\">US 12,393,768: Layout-aware multimodal pretraining for multimodal document understanding (Google)</a><span>A Google patent describes a layout encoder trained to detect swapped blocks and mismatched images; the build keeps DOM order and captions aligned.</span></li><li><a href=\"https://patents.google.com/patent/US7676745B2/en\" rel=\"noopener\">US 7,676,745 B2: Document segmentation based on visual gaps (Google)</a><span>A Google patent describes segmenting a page into blocks by its white space; the build removes empty containers that read as blocks.</span></li></ul>"
+  },
+  {
+   "id": "b6",
+   "heading": "Who is Website Development for?",
+   "html": "<h2>Who is Website Development for?</h2><b>Clients whose current site fails to carry the architecture</b><p>The theme blocks the calculator from going first, or has no room for a filter. The site is rebuilt to the templates.</p><b>Migrations between platforms</b><p>WordPress to Next.js, Wix to WordPress, Shopify theme changes. One-to-one URL and asset mapping.</p><b>New sites launching on the architecture from day one</b><p>No legacy to fix. Every template built to the map before the first page is written.</p><b>Not the right fit</b><p>A redesign for its own sake. The build follows the architecture. Without page decisions and a template list, the build has no target.</p>"
+  },
+  {
+   "id": "b7",
+   "heading": "How is Website Development priced and delivered?",
+   "html": "<h2>How is Website Development priced and delivered?</h2><dl><dt>Shape</dt><dd>Fixed-scope project</dd><dt>Pricing basis</dt><dd>Priced by template count and migration size</dd><dt>What you receive</dt><dd>The site, the template list, and the migration log</dd></dl><p>Exact scope is quoted in writing after the strategy call. <a href=\"https://digitalvikingz.com/knowledge/semantic-seo-cost\">How semantic SEO is priced</a>.</p><h3>A client property from the results page</h3><a href=\"https://digitalvikingz.com/results\">All results</a>"
+  },
+  {
+   "id": "b9",
+   "heading": "Questions about Website Development",
+   "html": "<h2>Questions about Website Development</h2><details open=\"\"><summary>What are the migration rules?</summary>One change at a time. Every URL redirects one to one, including image and file URLs. Nothing is left behind for the crawler to rediscover. Crawl stats are watched for the recrawl before the next change.</details><details><summary>Why do image URLs matter in a migration?</summary>Images are indexed separately and re-indexed slowly. A changed image URL without a redirect loses the image&#x27;s history. The migration log maps every image.</details><details><summary>Can we keep our current theme?</summary>Yes, when it renders the main component without JavaScript and allows the block order the map needs. A theme that fails either test is the problem, and it is replaced.</details><details><summary>Do you design, or only build?</summary>Both, to the client&#x27;s brand. The architecture decides the layout. The brand decides the look. The build keeps the two separate.</details><details><summary>Where does the site host?</summary>The site hosts on your hosting account. The build specifies response time and rendering requirements. Hosting is chosen to meet them, not resold.</details><details><summary>What about a site with thousands of programmatic pages?</summary>Next.js with a headless CMS, templates per page type, and the page test applied before generation. Pages that fail the test are not generated.</details><details><summary>How do you hand it over?</summary>Template documentation, the migration log, and a recorded walkthrough. Your developer maintains the site without us.</details><details><summary>What access does a build or migration need?</summary>Admin access to the CMS and hosting for the build. A migration also needs the current site, Search Console, and DNS access at cutover.</details><details><summary>What happens to existing content during a rebuild?</summary>Content moves to the new templates on the same URLs where the map keeps them. URLs the map merges get one-to-one redirects. Nothing is dropped without a redirect in the migration log.</details><details><summary>Do you build multilingual sites?</summary>Yes. Every language version shares one template set and one block sequence. Each version gets its own URLs.</details>"
+  }
+ ],
+ "cta": {
+  "heading": "Talk through the scope",
+  "text": "Thirty minutes with the founder. Your site open, the page decisions ahead, the scope that fits."
+ },
+ "source": "https://digitalvikingz.com/services/website-development"
+}
