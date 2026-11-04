@@ -102,7 +102,7 @@ export function CategoryFilters({ posts }: { posts: PostRow[] }) {
 export function BlogCard({ post }: { post: PostRow }) {
   return (
     <a className="dv-blog-card" href={`/blog/${post.slug}`} data-cat={catSlug(post)}>
-      <div className="dv-blog-card-image">
+      <div className={`dv-blog-card-image${post.featuredImage ? " has-img" : ""}`}>
         {post.featuredImage ? (
           <img src={post.featuredImage} alt={post.featuredImageAlt || post.title} loading="lazy" />
         ) : (
