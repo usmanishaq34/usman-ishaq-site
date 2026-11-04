@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import MediaLibraryModal from "./MediaLibraryModal"
-import { saveMediaMeta } from "@/lib/media-meta"
+import { findMediaByUrl, saveMediaMeta } from "@/lib/media-meta"
 
 interface ImagePickerProps {
   value: string
@@ -17,9 +17,13 @@ interface ImagePickerProps {
   showInlineMeta?: boolean
 }
 
-/* Featured image picker. An image picked from the library brings its alt
-   text, title and caption along; alt text, title and caption typed here are
-   written back to the library record, so the two never drift apart. */
+type Sync = "idle" | "saving" | "ok" | "none" | "looking" | "found" | "notfound"
+
+/* Featured image picker.
+   - An image picked from the library brings its alt text, title and caption.
+   - A URL pasted in is looked up in the library and, when found, brings them too.
+   - Alt text, title and caption typed here are written back to the library
+     record, so the two never drift apart. */
 export default function ImagePicker({
   value,
   onChange,
@@ -32,18 +36,44 @@ export default function ImagePicker({
   showInlineMeta = false,
 }: ImagePickerProps) {
   const [showLibrary, setShowLibrary] = useState(false)
-  const [synced, setSynced] = useState<"idle" | "saving" | "ok" | "none">("idle")
+  const [sync, setSync] = useState<Sync>("idle")
   // Only values typed here are written back, never the ones loaded with the post.
   const touched = useRef(false)
   const timer = useRef<number | null>(null)
+  const lookup = useRef<number | null>(null)
+
+  function applyMeta(meta?: { alt?: string; title?: string; caption?: string }) {
+    if (onAltChange) onAltChange(meta?.alt ?? "")
+    if (onTitleChange) onTitleChange(meta?.title ?? "")
+    if (onCaptionChange) onCaptionChange(meta?.caption ?? "")
+  }
 
   function handlePick(url: string, meta?: { alt?: string; title?: string; caption?: string }) {
     touched.current = false
     onChange(url, meta)
-    if (onAltChange) onAltChange(meta?.alt ?? "")
-    if (onTitleChange) onTitleChange(meta?.title ?? "")
-    if (onCaptionChange) onCaptionChange(meta?.caption ?? "")
+    applyMeta(meta)
     setShowLibrary(false)
+    setSync("idle")
+  }
+
+  // A pasted or typed URL: once it settles, look it up in the library.
+  function handleUrl(url: string) {
+    touched.current = false
+    onChange(url)
+    if (lookup.current) window.clearTimeout(lookup.current)
+    if (!/^https?:\/\/\S+|^\/\S+/.test(url.trim())) return setSync("idle")
+    setSync("looking")
+    lookup.current = window.setTimeout(async () => {
+      const item = await findMediaByUrl(url)
+      if (item) {
+        const meta = { alt: item.altText ?? undefined, title: item.title ?? undefined, caption: item.caption ?? undefined }
+        onChange(url, meta)
+        applyMeta(meta)
+        setSync("found")
+      } else {
+        setSync("notfound")
+      }
+    }, 600)
   }
 
   function edit(fn: ((v: string) => void) | undefined, v: string) {
@@ -54,15 +84,25 @@ export default function ImagePicker({
   useEffect(() => {
     if (!touched.current || !value) return
     if (timer.current) window.clearTimeout(timer.current)
-    setSynced("saving")
+    setSync("saving")
     timer.current = window.setTimeout(async () => {
       const ok = await saveMediaMeta(value, { alt: altValue ?? "", title: titleValue ?? "", caption: captionValue ?? "" })
-      setSynced(ok ? "ok" : "none")
+      setSync(ok ? "ok" : "none")
     }, 900)
     return () => {
       if (timer.current) window.clearTimeout(timer.current)
     }
   }, [value, altValue, titleValue, captionValue])
+
+  const note: Record<Sync, string> = {
+    idle: "Changes here are also saved on the image in the media library.",
+    saving: "Saving to the media library…",
+    ok: "Saved to the media library too, so the image keeps these next time.",
+    none: "This URL is not in the media library, so these apply to this post only.",
+    looking: "Looking the URL up in the media library…",
+    found: "Found in the media library: alt text, title and caption filled in from it.",
+    notfound: "This URL is not in the media library. Type the alt text and title here.",
+  }
 
   return (
     <div className="space-y-3">
@@ -91,7 +131,12 @@ export default function ImagePicker({
               <span className="text-ink-muted">·</span>
               <button
                 type="button"
-                onClick={() => onChange("")}
+                onClick={() => {
+                  touched.current = false
+                  onChange("")
+                  applyMeta(undefined)
+                  setSync("idle")
+                }}
                 className="text-xs font-mono uppercase tracking-widest text-ink-muted hover:text-red-600"
               >
                 Remove
@@ -117,7 +162,7 @@ export default function ImagePicker({
         <input
           type="url"
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => handleUrl(e.target.value)}
           placeholder="https://..."
           className="flex-1 px-3 py-2 border border-line-strong text-sm font-mono"
           style={{ borderRadius: 2 }}
@@ -159,12 +204,7 @@ export default function ImagePicker({
               style={{ borderRadius: 2 }}
             />
           </div>
-          <p className="text-[11px] text-ink-muted">
-            {synced === "saving" && "Saving to the media library…"}
-            {synced === "ok" && "Saved to the media library too, so the image keeps these next time."}
-            {synced === "none" && "This URL is not in the media library, so these apply to this post only."}
-            {synced === "idle" && "Changes here are also saved on the image in the media library."}
-          </p>
+          <p className="text-[11px] text-ink-muted">{note[sync]}</p>
         </div>
       )}
 

@@ -65,7 +65,7 @@ export default function PostEditorForm({
   })
 
   function set<K extends keyof typeof form>(key: K, value: (typeof form)[K]) {
-    setForm({ ...form, [key]: value })
+    setForm((prev) => ({ ...prev, [key]: value }))
   }
 
   function handleTitleChange(newTitle: string) {
@@ -84,7 +84,7 @@ export default function PostEditorForm({
   }
 
   function updateSeoFields(seo: SeoFields) {
-    setForm({ ...form, ...(seo as unknown as Partial<typeof form>) })
+    setForm((prev) => ({ ...prev, ...(seo as unknown as Partial<typeof form>) }))
   }
 
   async function handleSave(e: React.FormEvent) {
