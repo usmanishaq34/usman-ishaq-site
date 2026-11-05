@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "./db";
 import { pageDefaultLoaders } from "@/content/pages";
+import { OG_IMAGE } from "@/lib/og-image";
 
 // Dashboard-editable content for the new site's pages.
 //
@@ -73,9 +74,9 @@ export async function editablePageMetadata(path: string): Promise<Metadata> {
       title: seo.title,
       description: seo.description,
       url: path,
-      images: seo.ogImage ? [seo.ogImage] : undefined,
+      images: [seo.ogImage || OG_IMAGE],
     },
-    twitter: { card: "summary_large_image", title: seo.title, description: seo.description, images: seo.ogImage ? [seo.ogImage] : undefined },
+    twitter: { card: "summary_large_image", title: seo.title, description: seo.description, images: [seo.ogImage || OG_IMAGE] },
   };
 }
 

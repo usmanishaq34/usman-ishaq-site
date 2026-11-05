@@ -59,7 +59,7 @@ const ld = JSON.stringify({ "@context": "https://schema.org", "@graph": [...(sit
 
 const doc = {
   path: "/",
-  seo: { title: home.title, description: home.description, ogImage: "/images/usman-ishaq-portrait.webp", noindex: false, canonical: "" },
+  seo: { title: home.title, description: home.description, ogImage: "/images/usman-ishaq-og.png", noindex: false, canonical: "" },
   ld,
   blocks: sections.map(([id, label, C]) => ({ id, label, html: renderToStaticMarkup(<C />) })),
 }

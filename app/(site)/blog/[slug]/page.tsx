@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og-image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SiteHeader from "@/components/sections/SiteHeader";
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post || !post.published) return { title: "Post not found", robots: { index: false, follow: false } };
   const title = post.seoTitle || post.title;
   const description = post.seoDescription || post.excerpt;
-  const image = post.ogImage || post.featuredImage || "/images/usman-ishaq-portrait.webp";
+  const image = post.ogImage || post.featuredImage || OG_IMAGE;
   return {
     title,
     description,

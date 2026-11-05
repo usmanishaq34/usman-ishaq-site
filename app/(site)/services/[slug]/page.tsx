@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og-image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SiteHeader from "@/components/sections/SiteHeader";
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${doc.title} | Usman Ishaq`,
       description: doc.description,
       alternates: { canonical: path },
-      openGraph: { title: doc.title, description: doc.description, url: path, type: "website", images: ["/images/usman-ishaq-portrait.webp"] },
+      openGraph: { title: doc.title, description: doc.description, url: path, type: "website", images: [OG_IMAGE] },
     },
     path,
   );

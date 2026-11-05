@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og-image";
 import type { Metadata } from "next";
 import SiteHeader from "@/components/sections/SiteHeader";
 import SiteFooter from "@/components/sections/SiteFooter";
@@ -21,7 +22,7 @@ export function generateMetadata(): Promise<Metadata> {
       title: r.title,
       description: r.description,
       alternates: { canonical: "/blog" },
-      openGraph: { title: r.title, description: r.description, url: "/blog", type: "website", images: ["/images/usman-ishaq-portrait.webp"] },
+      openGraph: { title: r.title, description: r.description, url: "/blog", type: "website", images: [OG_IMAGE] },
     },
     "/blog",
   );

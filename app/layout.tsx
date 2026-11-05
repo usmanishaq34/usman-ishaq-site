@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/og-image";
 
 // Root shell shared by the public site and the dashboard: fonts only. The
 // public site's stylesheet is loaded by app/(site)/layout.tsx, the
@@ -16,8 +17,9 @@ export const metadata: Metadata = {
     description: "Semantic SEO strategist and topical content consultant. Topical maps, structured content briefs and semantic site architecture that rank in Google and get cited by AI.",
     url: `${siteUrl}/`,
     type: "website",
-    images: ["/images/usman-ishaq-portrait.webp"],
+    images: [OG_IMAGE],
   },
+  twitter: { card: "summary_large_image", images: [OG_IMAGE] },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
