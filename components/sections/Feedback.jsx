@@ -1,4 +1,4 @@
-// Section: Client feedback. One client recording and three Google reviews
+// Section: Client feedback. One client recording, three Google reviews and one Upwork review
 // shown as the original screenshots, in the Digital Vikingz layout. The tab
 // switch and the video player live in Interactions.jsx and Overlays.jsx.
 const videos = [
@@ -6,9 +6,10 @@ const videos = [
 ];
 
 const reviews = [
+  { img: "/images/reviews/google-review-03.webp", w: 699, h: 362, alt: "Google review, 5 stars: I hired Usman to lead the SEO and AEO strategy for my website during a major redesign. He does not simply identify problems, he works collaboratively to resolve them. I highly recommend Usman to anyone looking for an SEO and AEO strategist." },
+  { img: "/images/reviews/upwork-review-01.webp", w: 744, h: 410, alt: "Upwork review with the client endorsements Collaborative, Professional, Detail Oriented, Clear Communicator, Reliable and Solution Oriented: Usman was an absolute pleasure to work with on the website project. He delivered on time, met all specifications and resolved issues quickly. Highly recommended." },
   { img: "/images/reviews/google-review-01.webp", w: 684, h: 165, alt: "Google review, 5 stars: Usman has been an absolute pleasure to work with. His skills, knowledge and attention to detail are exceptional. I highly recommend Usman and look forward to continuing to work with him." },
   { img: "/images/reviews/google-review-02.webp", w: 658, h: 138, alt: "Google review, 5 stars: Usman has been doing ongoing SEO and content work for our robotics site. Responsive, professional and easy to work with. Highly recommend for web development and SEO services." },
-  { img: "/images/reviews/google-review-03.webp", w: 699, h: 362, alt: "Google review, 5 stars: I hired Usman to lead the SEO and AEO strategy for my website during a major redesign. He does not simply identify problems, he works collaboratively to resolve them. I highly recommend Usman to anyone looking for an SEO and AEO strategist." },
 ];
 
 export default function Feedback() {
@@ -30,7 +31,7 @@ export default function Feedback() {
             </h2>
             {" "}
             <p className="lead rv d2">
-              {"A client answers that question himself in the recording below. The written feedback sits beside it as the original Google review screenshots."}
+              {"A client answers that question himself in the recording below. The written feedback sits beside it as the original review screenshots."}
             </p>
             {" "}
           </div>
