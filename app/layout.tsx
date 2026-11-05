@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     title: "Usman Ishaq | Semantic SEO Strategist",
-    description: "Websites Google understands, so the phone rings. Topical maps, semantic content, schema and site architecture.",
+    description: "Semantic SEO strategist and topical content consultant. Topical maps, structured content briefs and semantic site architecture that rank in Google and get cited by AI.",
     url: `${siteUrl}/`,
     type: "website",
     images: ["/images/usman-ishaq-portrait.webp"],
