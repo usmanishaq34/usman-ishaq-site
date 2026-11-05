@@ -812,11 +812,12 @@ a.svc{display:block;color:inherit}
 .rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;align-items:stretch}
 .rshot{margin:0;display:flex;align-items:center;background:#fff;border:1px solid #ece4d8;border-radius:14px;padding:10px;overflow:hidden}
 .rshot img{display:block;width:100%;height:auto;max-height:320px;object-fit:contain;object-position:left top}
-.vmodal{padding:0;border:0;background:transparent;max-width:none;max-height:none;overflow:visible}
+/* The global margin reset removes the dialog element's own centring, so the window is pinned to the viewport and centred here. */
+.vmodal{position:fixed;inset:0;margin:auto;width:fit-content;height:fit-content;padding:0;border:0;background:transparent;max-width:none;max-height:none;overflow:visible}
 .vmodal::backdrop{background:rgba(4,7,15,.88);backdrop-filter:blur(4px)}
 .vframe{position:relative}
 .vframe video{display:block;border-radius:14px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.vframe.wide video{aspect-ratio:16/9;height:auto;width:min(92vw,1100px,calc(82vh * 16 / 9))}
+.vframe.wide video{aspect-ratio:16/9;height:auto;width:min(96vw,calc(88vh * 16 / 9))}
 .vframe.tall video{aspect-ratio:9/16;height:auto;width:min(92vw,calc(min(84vh,860px) * 9 / 16))}
 .vclose{position:absolute;top:-18px;right:-18px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 .vclose svg{width:20px;height:20px}
