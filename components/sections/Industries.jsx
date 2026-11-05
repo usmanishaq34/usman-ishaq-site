@@ -43,9 +43,6 @@ export default function Industries() {
             {"Tree care"}
           </span>
           <span className="ind">
-            {"Pest control"}
-          </span>
-          <span className="ind">
             {"Damp and surveys"}
           </span>
           <span className="ind">
@@ -95,6 +92,9 @@ export default function Industries() {
           </span>
           <span className="ind">
             {"AI tools"}
+          </span>
+          <span className="ind">
+            {"Pest control"}
           </span>
           <span className="ind">
             {"Many more"}
