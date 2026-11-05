@@ -147,8 +147,8 @@ export default function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href="mailto:workwithus@digitalvikingz.com">
-                  {"workwithus@digitalvikingz.com"}
+                <a href="mailto:contact@usmanishaq.com">
+                  {"contact@usmanishaq.com"}
                 </a>
               </li>
               <li>

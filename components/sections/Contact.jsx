@@ -54,7 +54,7 @@ export default function Contact() {
               </div>
             </a>
             {" "}
-            <a className="channel rv d2" href="mailto:workwithus@digitalvikingz.com">
+            <a className="channel rv d2" href="mailto:contact@usmanishaq.com">
               <div className="ci">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="5" width="18" height="14" rx="2"></rect>
@@ -66,7 +66,7 @@ export default function Contact() {
                   {"Email"}
                 </b>
                 <span>
-                  {"workwithus@digitalvikingz.com"}
+                  {"contact@usmanishaq.com"}
                 </span>
               </div>
             </a>
@@ -241,7 +241,7 @@ export default function Contact() {
           {" "}
           <div className="form-err" id="formErr" role="alert">
             {"The message did not send. "}
-            <a href="mailto:workwithus@digitalvikingz.com" style={{textDecoration:"underline",fontWeight:"700"}}>
+            <a href="mailto:contact@usmanishaq.com" style={{textDecoration:"underline",fontWeight:"700"}}>
               {"Email me directly"}
             </a>
             {" or "}
