@@ -26,7 +26,7 @@ export default function Feedback() {
             </span>
             {" "}
             <h2 className="rv d1">
-              {"What is it like to work with Usman?"}
+              {"What is it like to work with Usman Ishaq?"}
             </h2>
             {" "}
             <p className="lead rv d2">
