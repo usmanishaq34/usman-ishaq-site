@@ -33,6 +33,7 @@ const nextConfig = {
       // so the folder rule does not send them to a missing post.
       { source: "/what-is-semantic-seo", destination: "/blog/semantic-seo-keywords-to-knowledge", permanent: true },
       { source: "/semantic-seo/what-is-semantic-seo", destination: "/blog/semantic-seo-keywords-to-knowledge", permanent: true },
+      { source: "/blog/what-is-semantic-seo", destination: "/blog/semantic-seo-keywords-to-knowledge", permanent: true },
       { source: "/google-update-ranking-recovery", destination: "/blog/google-march-2025-core-update-guide", permanent: true },
       // Post slugs linked from the site root, as some older posts did.
       {
