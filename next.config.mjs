@@ -28,6 +28,18 @@ const nextConfig = {
     // the old category folders map straight onto /blog/<slug>. Next.js strips
     // a trailing slash before matching, so each pattern is written without one.
     return [
+      // Posts that existed on the old site but were not carried over, sent to
+      // the closest guide on the same subject. Listed before the folder rules
+      // so the folder rule does not send them to a missing post.
+      { source: "/what-is-semantic-seo", destination: "/blog/semantic-seo-keywords-to-knowledge", permanent: true },
+      { source: "/semantic-seo/what-is-semantic-seo", destination: "/blog/semantic-seo-keywords-to-knowledge", permanent: true },
+      { source: "/google-update-ranking-recovery", destination: "/blog/google-march-2025-core-update-guide", permanent: true },
+      // Post slugs linked from the site root, as some older posts did.
+      {
+        source: "/:slug(geo-stack-vs-semantic-seo|query-deserves-page-content-structure|semantic-content-network-strategy-guide|semantic-copywriting-for-conversions|semantic-seo-strategy-for-service-businesses)",
+        destination: "/blog/:slug",
+        permanent: true,
+      },
       { source: "/insights", destination: "/blog", permanent: true },
       { source: "/semantic-seo", destination: "/blog", permanent: true },
       { source: "/content-writing", destination: "/blog", permanent: true },
