@@ -788,10 +788,10 @@ a.svc{display:block;color:inherit}
 .fb-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
 .fb-head h2{margin-top:14px}
 .fb-head .lead{margin-top:14px}
-.tabs{display:flex;gap:6px;flex-wrap:wrap}
-.tab{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:2px solid #d9d2c7;background:#fff;border-radius:12px;font-family:var(--body);font-size:15px;font-weight:700;line-height:1;cursor:pointer;color:var(--dark-text);transition:border-color .15s,background .15s,color .15s}
-.tab:hover{border-color:var(--dark-muted)}
-.tab[aria-selected=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.feedback .tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0}
+.feedback .tab{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:2px solid #d9d2c7;background:#fff;border-radius:12px;font-family:var(--body);font-size:15px;font-weight:700;line-height:1;cursor:pointer;color:var(--dark-text);transition:border-color .15s,background .15s,color .15s}
+.feedback .tab:hover:not([aria-selected=true]){border-color:var(--orange);color:var(--orange);background:#fff}
+.feedback .tab[aria-selected=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
 .fb-panel[hidden]{display:none}
 .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .vcard{position:relative;display:block;width:100%;padding:0;border:0;cursor:pointer;border-radius:18px;overflow:hidden;background:var(--ink);aspect-ratio:4/5;text-align:left;color:#fff;font:inherit}
@@ -818,11 +818,11 @@ a.svc{display:block;color:inherit}
 .vclose{position:absolute;top:-18px;right:-18px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 .vclose svg{width:20px;height:20px}
 @media (max-width:1080px){
-  .vgrid{gap:14px}
-  .vcard .who{padding-left:84px}
+  .fb-head{align-items:flex-start;flex-direction:column}
+  .vgrid{grid-template-columns:1fr;gap:18px;max-width:440px}
+  .rgrid{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .vgrid,.rgrid{grid-template-columns:1fr}
-  .vcard{aspect-ratio:4/5}
+  .vgrid{max-width:none}
   .vclose{top:-54px;right:0}
 }
