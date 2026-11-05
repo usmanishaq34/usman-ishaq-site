@@ -13,6 +13,16 @@ export default function Overlays() {
       </button>
       <img id="lbImg" alt="" />
     </div>
+    <dialog className="vmodal" id="vmodal" aria-label="Client video recording">
+      <div className="vframe wide" id="vframe">
+        <video id="vplayer" controls playsInline preload="metadata"></video>
+        <button type="button" className="vclose" id="vclose" aria-label="Close video">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+          </svg>
+        </button>
+      </div>
+    </dialog>
     </>
   );
 }

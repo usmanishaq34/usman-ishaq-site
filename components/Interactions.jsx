@@ -43,6 +43,33 @@ export default function Interactions() {
       document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
     }
 
+    /* ---------- client feedback: tabs and the video player ---------- */
+    const fbTabs = $("fbTabs");
+    if (fbTabs) {
+      fbTabs.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-fb]"); if (!b) return;
+        fbTabs.querySelectorAll("[data-fb]").forEach((x) => x.setAttribute("aria-selected", x === b ? "true" : "false"));
+        document.querySelectorAll("[data-fb-panel]").forEach((p) => { p.hidden = p.dataset.fbPanel !== b.dataset.fb; });
+        revealVisible();
+      });
+    }
+    const vmodal = $("vmodal"), vframe = $("vframe"), vplayer = $("vplayer");
+    if (vmodal && vframe && vplayer && typeof vmodal.showModal === "function") {
+      const closeVideo = () => { vplayer.pause(); vplayer.removeAttribute("src"); vplayer.load(); if (vmodal.open) vmodal.close(); };
+      document.querySelectorAll(".vcard[data-src]").forEach((card) => {
+        card.addEventListener("click", () => {
+          vframe.className = "vframe " + (card.dataset.shape === "tall" ? "tall" : "wide");
+          vplayer.poster = card.dataset.poster || "";
+          vplayer.src = card.dataset.src;
+          vmodal.showModal();
+          vplayer.play().catch(() => {});
+        });
+      });
+      const vclose = $("vclose"); if (vclose) vclose.onclick = closeVideo;
+      vmodal.addEventListener("click", (e) => { if (e.target === vmodal) closeVideo(); });
+      vmodal.addEventListener("close", () => { vplayer.pause(); vplayer.removeAttribute("src"); vplayer.load(); });
+    }
+
     /* ---------- portfolio ---------- */
     const pf = $("pfGrid"), filters = $("filters");
     if (pf && filters) {

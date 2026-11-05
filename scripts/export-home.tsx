@@ -11,6 +11,7 @@ import Hero from "../components/sections/Hero"
 import Logos from "../components/sections/Logos"
 import Stats from "../components/sections/Stats"
 import Results from "../components/sections/Results"
+import Feedback from "../components/sections/Feedback"
 import TownsProblem from "../components/sections/TownsProblem"
 import Method from "../components/sections/Method"
 import LiveBuild from "../components/sections/LiveBuild"
@@ -35,6 +36,7 @@ const sections: [string, string, () => React.ReactElement][] = [
   ["logos", "Logo strip", Logos],
   ["stats", "Numbers", Stats],
   ["results", "Search Console results", Results],
+  ["feedback", "Client feedback", Feedback],
   ["problem", "The sixteen towns problem", TownsProblem],
   ["method", "Method", Method],
   ["build", "Live build", LiveBuild],
