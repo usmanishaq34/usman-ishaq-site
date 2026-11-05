@@ -1,9 +1,7 @@
-// Section: Client feedback. Three client recordings and three Google reviews
+// Section: Client feedback. One client recording and three Google reviews
 // shown as the original screenshots, in the Digital Vikingz layout. The tab
 // switch and the video player live in Interactions.jsx and Overlays.jsx.
 const videos = [
-  { src: "/video/client-testimonial-3.mp4", poster: "/images/video/client-testimonial-3.jpg", width: 540, height: 960, length: "1:28" },
-  { src: "/video/client-testimonial-2.mp4", poster: "/images/video/client-testimonial-2.jpg", width: 540, height: 960, length: "1:18" },
   { src: "/video/client-testimonial-1.mp4", poster: "/images/video/client-testimonial-1.jpg", width: 1280, height: 720, length: "1:12" },
 ];
 
@@ -32,7 +30,7 @@ export default function Feedback() {
             </h2>
             {" "}
             <p className="lead rv d2">
-              {"Three clients answer that question themselves in the recordings below. The written feedback sits beside them as the original Google review screenshots."}
+              {"A client answers that question himself in the recording below. The written feedback sits beside it as the original Google review screenshots."}
             </p>
             {" "}
           </div>
@@ -50,11 +48,11 @@ export default function Feedback() {
         {" "}
         <div className="fb-panel" data-fb-panel="video">
           {" "}
-          <div className="vgrid">
+          <div className="vgrid single">
             {videos.map((v, n) => (
               <button
                 type="button"
-                className="vcard"
+                className={v.width > v.height ? "vcard wide" : "vcard"}
                 key={v.src}
                 data-src={v.src}
                 data-poster={v.poster}
@@ -78,12 +76,6 @@ export default function Feedback() {
               </button>
             ))}
           </div>
-          {" "}
-          <p className="more">
-            <a className="btn btn-ghost" href="https://digitalvikingz.com/feedback" target="_blank" rel="noopener">
-              {"Read all reviews"}
-            </a>
-          </p>
           {" "}
         </div>
         {" "}
