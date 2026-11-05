@@ -12,8 +12,11 @@ export const revalidate = 60;
 
 type Props = { params: Promise<{ slug: string }> };
 
+// A database error is thrown, not turned into "not found": a thrown error
+// keeps the previously cached page (or fails the build), while a null here
+// would be cached as a 404 for the whole revalidation window.
 async function fetchPost(slug: string): Promise<FullPost | null> {
-  return prisma.post.findUnique({ where: { slug }, include: { category: true, postAuthor: true } }).catch(() => null);
+  return prisma.post.findUnique({ where: { slug }, include: { category: true, postAuthor: true } });
 }
 
 export async function generateStaticParams() {
