@@ -217,6 +217,13 @@ export default function Contact() {
             <textarea id="fMsg" name="message" placeholder="What have you tried before? What happened?"></textarea>
           </div>
           {" "}
+          <div className="field hp" aria-hidden="true">
+            <label htmlFor="fCompany">
+              {"Company"}
+            </label>
+            <input id="fCompany" name="company" tabIndex={-1} autoComplete="off" />
+          </div>
+          {" "}
           <button className="btn btn-primary" type="submit" style={{width:"100%",justifyContent:"center"}}>
             {"Send my details "}
             <span className="arrow">
@@ -225,9 +232,21 @@ export default function Contact() {
           </button>
           {" "}
           <div className="form-ok" id="formOk">
-            {"Your email app should open with everything filled in. Prefer to talk? "}
+            {"Thank you. Your details are in my inbox and I reply myself. Prefer to talk? "}
             <a href="https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz" target="_blank" rel="noopener" style={{textDecoration:"underline",fontWeight:"700"}}>
               {"Book a time here"}
+            </a>
+            {"."}
+          </div>
+          {" "}
+          <div className="form-err" id="formErr" role="alert">
+            {"The message did not send. "}
+            <a href="mailto:workwithus@digitalvikingz.com" style={{textDecoration:"underline",fontWeight:"700"}}>
+              {"Email me directly"}
+            </a>
+            {" or "}
+            <a href="https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz" target="_blank" rel="noopener" style={{textDecoration:"underline",fontWeight:"700"}}>
+              {"book a time"}
             </a>
             {"."}
           </div>

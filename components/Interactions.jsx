@@ -399,16 +399,28 @@ export default function Interactions() {
     });
 
     /* ---------- lead form ---------- */
+    // The answers go to /api/lead, which emails them to the agency inbox.
+    // Nothing opens on the visitor's device; the thank-you note shows in place.
     const leadForm = $("leadForm");
     if (leadForm) {
-      leadForm.addEventListener("submit", (e) => {
+      leadForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const f = e.target, name = f.name.value.trim(), email = f.email.value.trim();
+        const ok = $("formOk"), err = $("formErr"), btn = f.querySelector('button[type="submit"]');
         if (!name || !/^\S+@\S+\.\S+$/.test(email)) { (name ? f.email : f.name).focus(); (name ? f.email : f.name).style.borderColor = "#db4c23"; return; }
-        const wins = [...f.querySelectorAll('input[name="win"]:checked')].map((x) => x.value).join(", ") || "Not given";
-        const body = `Name: ${name}\nEmail: ${email}\nWebsite: ${f.website.value}\nBusiness type: ${f.type.value}\nCounts as a win: ${wins}\nTowns or markets: ${f.towns.value}\n\n${f.message.value}`;
-        location.href = `mailto:workwithus@digitalvikingz.com?subject=${encodeURIComponent("Website enquiry from " + name)}&body=${encodeURIComponent(body)}`;
-        const ok = $("formOk"); if (ok) ok.classList.add("show");
+        const wins = [...f.querySelectorAll('input[name="win"]:checked')].map((x) => x.value);
+        const payload = { name, email, website: f.website.value, type: f.type.value, wins, towns: f.towns.value, message: f.message.value, company: f.company ? f.company.value : "" };
+        if (err) err.classList.remove("show");
+        if (btn) { btn.disabled = true; btn.setAttribute("aria-busy", "true"); }
+        let sent = false, message = "";
+        try {
+          const r = await fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+          const j = await r.json().catch(() => ({}));
+          sent = r.ok && j.ok === true; message = j.message || "";
+        } catch { sent = false; }
+        if (btn) { btn.disabled = false; btn.removeAttribute("aria-busy"); }
+        if (sent) { f.reset(); if (btn) btn.classList.add("hide"); if (ok) ok.classList.add("show"); }
+        else if (err) { if (message) err.firstChild.textContent = message + " "; err.classList.add("show"); }
       });
     }
 

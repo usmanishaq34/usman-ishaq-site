@@ -328,6 +328,10 @@ form.lead .muted{color:var(--dark-muted);font-size:15px;margin-bottom:22px}
 .pills input:checked + span{background:var(--orange);border-color:var(--orange);color:#fff}
 .form-ok{display:none;margin-top:14px;padding:14px;border-radius:12px;background:#e9f8f1;color:#156b4b;font-size:14.5px}
 .form-ok.show{display:block}
+.form-err{display:none;margin-top:14px;padding:14px;border-radius:12px;background:#fdecec;color:#9b2222;font-size:14.5px}
+.form-err.show{display:block}
+form.lead .hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+form.lead .btn.hide{display:none}
 
 /* footer */
 footer{background:#050912;padding:60px 0 36px;border-top:1px solid var(--line)}
