@@ -1,7 +1,7 @@
 // Builds public/images/usman-ishaq-og.png, the 1200x630 preview image shown
 // when a page of the site is shared on WhatsApp, LinkedIn, X or Slack.
-// The card is the site header's lockup (logo tile, name, "Semantic SEO
-// Strategist") rendered with the site's own fonts, Fraunces and JetBrains
+// The card is the site header's lockup (the full logo illustration, the name
+// and "Semantic SEO Strategist") rendered with the site's own fonts, Fraunces and JetBrains
 // Mono, fetched from Google Fonts at run time. Rendered by the image engine
 // Next ships for Open Graph images. Run from the site root:
 //   node scripts/make-og-image.mjs
@@ -18,14 +18,13 @@ async function font(family) {
   return (await fetch(url)).arrayBuffer();
 }
 const [fraunces, mono] = await Promise.all([font("Fraunces:wght@600"), font("JetBrains+Mono:wght@400")]);
+const LOGO_H = 52 * S, LOGO_W = Math.round(LOGO_H * 160 / 179); // the whole illustration, nothing cropped
 const logo = `data:image/png;base64,${(await sharp("public/images/usman-ishaq-logo.webp").png().toBuffer()).toString("base64")}`;
 
 const h = (type, props, ...children) => ({ type, props: { ...props, children: children.length === 1 ? children[0] : children } });
 const tree = h("div", { style: { width: W, height: H, display: "flex", alignItems: "center", justifyContent: "center", background: "#0e1a36" } },
   h("div", { style: { display: "flex", alignItems: "center", gap: 12 * S } },
-    h("div", { style: { width: 42 * S, height: 42 * S, borderRadius: 12 * S, overflow: "hidden", display: "flex", background: "linear-gradient(135deg, #db4c23, #8f2a0f)" } },
-      h("img", { src: logo, width: 42 * S, height: 42 * S, style: { width: 42 * S, height: 42 * S, objectFit: "cover" } }),
-    ),
+    h("img", { src: logo, width: LOGO_W, height: LOGO_H, style: { width: LOGO_W, height: LOGO_H } }),
     h("div", { style: { display: "flex", flexDirection: "column" } },
       h("div", { style: { fontFamily: "Fraunces", fontSize: 21 * S, fontWeight: 600, lineHeight: 1, color: "#e9edf6" } }, "Usman Ishaq"),
       h("div", { style: { fontFamily: "JetBrains Mono", fontSize: 10.5 * S, letterSpacing: 10.5 * S * 0.12, textTransform: "uppercase", color: "#9aa6c0", marginTop: 5 * S } }, "SEMANTIC SEO STRATEGIST"),
