@@ -372,10 +372,6 @@ export default function Results() {
           {" "}
         </div>
         {" "}
-        <p className="honest rv">
-          {"Not every line goes up. Search moves, and some of these sites dipped in 2026. We show the full 16 months, not a cropped spike. That is the same honesty you get in our reports."}
-        </p>
-        {" "}
       </div>
       {" "}
     </section>

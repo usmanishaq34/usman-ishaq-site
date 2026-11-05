@@ -10,19 +10,15 @@ export default function Hero() {
         <div>
           {" "}
           <span className="eyebrow rv">
-            {"Usman Ishaq · Semantic SEO Strategist"}
+            {"Usman Ishaq · Rank in Google. Get cited by AI."}
           </span>
           {" "}
           <h1 className="rv d1">
-            {"I build websites Google "}
-            <em>
-              {"understands"}
-            </em>
-            {", so the phone rings."}
+            {"Semantic SEO Strategist & Topical Content Consultant"}
           </h1>
           {" "}
           <p className="lead rv d2">
-            {"Topical maps, semantic content, schema and site structure, built as one system. For service and trade businesses that count calls, quote requests and booked jobs. Not ranking reports."}
+            {"Websites underperform when search engines fail to read their meaning. I fix that with topical maps, structured content briefs and semantic site architecture built around entities and search intent. The result is content that ranks in Google, gets cited in ChatGPT, Claude and AI Overviews, and converts the visitors who arrive."}
           </p>
           {" "}
           <div className="hero-ctas rv d3">

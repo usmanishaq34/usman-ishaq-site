@@ -18,20 +18,6 @@ export default function Stats() {
         {" "}
         <div className="stat rv d1">
           <div className="num">
-            <span className="cnt" data-to="200">
-              {"0"}
-            </span>
-            <span>
-              {"+"}
-            </span>
-          </div>
-          <p>
-            {"Projects delivered"}
-          </p>
-        </div>
-        {" "}
-        <div className="stat rv d2">
-          <div className="num">
             <span className="cnt" data-to="40">
               {"0"}
             </span>
@@ -44,7 +30,7 @@ export default function Stats() {
           </p>
         </div>
         {" "}
-        <div className="stat rv d3">
+        <div className="stat rv d2">
           <div className="num">
             <span className="cnt" data-to="6">
               {"0"}
@@ -65,7 +51,10 @@ export default function Stats() {
             </span>
           </div>
           <p>
-            {"People following my SEO notes on LinkedIn"}
+            {"People following my SEO notes on "}
+            <a href="https://www.linkedin.com/in/usmanishaqseo/" target="_blank" rel="noopener">
+              {"LinkedIn"}
+            </a>
           </p>
         </div>
         {" "}
