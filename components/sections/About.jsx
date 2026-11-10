@@ -13,7 +13,7 @@ export default function About() {
             <b>
               {"Usman Ishaq"}
             </b>
-            {" · Founder, Digital Vikingz · Mechanical engineer turned semantic SEO strategist"}
+            {" · Founder, Digital Vikingz · Mechanical engineer turned semantic SEO strategist and consultant"}
           </div>
           {" "}
         </div>

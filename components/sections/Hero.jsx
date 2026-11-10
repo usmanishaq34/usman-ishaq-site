@@ -14,7 +14,7 @@ export default function Hero() {
           </span>
           {" "}
           <h1 className="rv d1">
-            {"Semantic SEO Strategist & Topical Content Consultant"}
+            {"Semantic SEO Strategist and Consultant"}
           </h1>
           {" "}
           <p className="lead rv d2">
@@ -69,7 +69,7 @@ export default function Hero() {
             <div className="portrait">
               {" "}
               {" "}
-              <img src="/images/usman-ishaq-portrait.webp" alt="Usman Ishaq, semantic SEO strategist" />
+              <img src="/images/usman-ishaq-portrait.webp" alt="Usman Ishaq, semantic SEO strategist and consultant" />
               {" "}
             </div>
             {" "}

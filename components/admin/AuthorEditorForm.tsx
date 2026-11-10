@@ -143,7 +143,7 @@ export default function AuthorEditorForm({
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           className="w-full px-3.5 py-3 border border-line-strong font-body text-ink bg-bg focus:outline-none focus:border-accent transition-colors text-sm"
           style={{ borderRadius: 2 }}
-          placeholder="Semantic SEO Strategist"
+          placeholder="Semantic SEO Strategist and Consultant"
         />
       </div>
 

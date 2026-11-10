@@ -6,5 +6,5 @@ export const OG_IMAGE = {
   url: OG_IMAGE_PATH,
   width: 1200,
   height: 630,
-  alt: "Usman Ishaq, semantic SEO strategist and topical content consultant",
+  alt: "Usman Ishaq, semantic SEO strategist and consultant",
 };

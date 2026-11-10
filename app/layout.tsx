@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Usman Ishaq | Semantic SEO Strategist for Trade and Service Businesses",
   description:
-    "Usman Ishaq is a semantic SEO strategist and founder of Digital Vikingz. Topical maps, semantic content, schema and websites built as systems for businesses in the USA, UK, Canada, Australia, UAE and Germany.",
+    "Usman Ishaq is a semantic SEO strategist and consultant, and the founder of Digital Vikingz. Topical maps, semantic content, schema and websites built as systems for businesses in the USA, UK, Canada, Australia, UAE and Germany.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Usman Ishaq | Semantic SEO Strategist",
-    description: "Semantic SEO strategist and topical content consultant. Topical maps, structured content briefs and semantic site architecture that rank in Google and get cited by AI.",
+    description: "Semantic SEO strategist and consultant. Topical maps, structured content briefs and semantic site architecture that rank in Google and get cited by AI.",
     url: `${siteUrl}/`,
     type: "website",
     images: [OG_IMAGE],
