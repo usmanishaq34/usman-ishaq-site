@@ -35,7 +35,7 @@ export function articleJsonLd(post: FullPost): string {
     dateModified: post.updatedAt.toISOString(),
     image: post.featuredImage ? [post.featuredImage.startsWith("http") ? post.featuredImage : `${siteUrl}${post.featuredImage}`] : undefined,
     author: post.postAuthor
-      ? { "@type": "Person", name: post.postAuthor.name, jobTitle: post.postAuthor.title ?? undefined }
+      ? { "@type": "Person", "@id": `${siteUrl}/#person`, name: post.postAuthor.name, jobTitle: post.postAuthor.title ?? undefined }
       : { "@id": `${siteUrl}/#person` },
     publisher: { "@id": `${siteUrl}/#person` },
     articleSection: post.category?.name ?? undefined,
