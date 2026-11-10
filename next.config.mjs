@@ -47,13 +47,15 @@ const nextConfig = {
       { source: "/social-media-marketing", destination: "/blog", permanent: true },
       { source: "/copywriting", destination: "/blog", permanent: true },
       { source: "/google-update", destination: "/blog", permanent: true },
-      // Old portfolio items that still get search impressions. The new site has
-      // no portfolio section, so they go to the homepage.
+      // Old portfolio items. Search Console lists thirteen of them as 404. The new
+      // site has no portfolio section, so every one goes to the homepage.
       {
-        source: "/portfolio/:slug(instagram-automation|minor-dent-repair|magic-art-2|keyword-planning|ave-bottle-2|mockup-shape-2|top-rank-seo|impact-of-liquidation)",
+        source: "/portfolio/:slug*",
         destination: "/",
         permanent: true,
       },
+      // The old WordPress front page address.
+      { source: "/home", destination: "/", permanent: true },
       { source: "/semantic-seo/:slug", destination: "/blog/:slug", permanent: true },
       { source: "/content-writing/:slug", destination: "/blog/:slug", permanent: true },
       { source: "/social-media-marketing/:slug", destination: "/blog/:slug", permanent: true },
