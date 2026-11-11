@@ -21,7 +21,7 @@ export const routes: Route[] = [
     label: "Homepage",
     title: "Usman Ishaq | Semantic SEO Strategist for Trade and Service Businesses",
     description:
-      "Usman Ishaq is a semantic SEO strategist and consultant, and the founder of Digital Vikingz. Topical maps, semantic content, schema and websites built as systems for businesses in the USA, UK, Canada, Australia, UAE and Germany.",
+      "Usman Ishaq is a semantic SEO strategist and consultant. Semantic SEO and AI search visibility that get businesses found on Google and recommended by ChatGPT.",
     kind: "core",
     priority: 1,
   },
