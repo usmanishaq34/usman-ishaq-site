@@ -22,7 +22,7 @@ export default function SiteFooter() {
             </a>
             {" "}
             <p className="muted" style={{marginTop:"16px",fontSize:"14.5px",maxWidth:"340px"}}>
-              {"Founder of Digital Vikingz. Semantic SEO, topical maps and websites for businesses in the USA, UK, Canada, Australia, UAE and Germany."}
+              {"Semantic SEO and AI search visibility for brands and business owners: get found on Google and recommended by ChatGPT, Gemini and Perplexity. Clients in the USA, UK, Canada, Australia, UAE and Germany."}
             </p>
             {" "}
             <div className="socials">
