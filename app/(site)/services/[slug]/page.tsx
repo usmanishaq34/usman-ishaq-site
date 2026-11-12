@@ -30,6 +30,8 @@ type ServiceDoc = {
   standfirst: string;
   sections: { id: string; heading: string; html: string }[];
   cta: { heading: string; text: string } | null;
+  catalog?: { name: string; description: string }[];
+  process?: { name: string; text: string }[];
 };
 
 type Props = { params: Promise<{ slug: string }> };

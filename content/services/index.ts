@@ -10,8 +10,8 @@ export const serviceIndex: ServiceSummary[] = [
   {
     "slug": "semantic-content-audit",
     "cardTitle": "Semantic Content Audit",
-    "title": "Semantic Content Audit | Entity, Predicate, Coverage Review",
-    "description": "A fixed-fee diagnostic of entity coverage, predicate consistency, semantic dilution, layout, and AI citation readiness. Written deliverable, no obligation."
+    "title": "Semantic Content Audit | Checks, Issue Map and Flat Fee",
+    "description": "A Semantic Content Audit checks which pages compete, which topics lack a page and which answers AI systems skip. One flat fee covers the written findings."
   },
   {
     "slug": "website-development",

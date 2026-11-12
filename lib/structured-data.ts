@@ -296,9 +296,16 @@ export type ServiceDocLike = {
   h1: string;
   standfirst: string;
   sections: { id: string; heading: string; html: string }[];
+  /** Explicit offer catalogue and process from a rewritten page; preferred over parsing the HTML. */
+  catalog?: { name: string; description: string }[];
+  process?: { name: string; text: string }[];
 };
 
 function deliverablesOf(doc: ServiceDocLike) {
+  if (doc.catalog?.length) {
+    const s = doc.sections.find((x) => /check|deliver|receive/i.test(x.heading));
+    return { heading: s?.heading ?? `${doc.cardTitle} deliverables`, items: doc.catalog };
+  }
   for (const s of doc.sections) {
     const items = [...s.html.matchAll(/<div class="deliverable">\s*<h3>([\s\S]*?)<\/h3>[\s\S]*?<dd>([\s\S]*?)<\/dd>/g)].map((m) => ({
       name: strip(m[1]),
@@ -310,6 +317,10 @@ function deliverablesOf(doc: ServiceDocLike) {
 }
 
 function processOf(doc: ServiceDocLike) {
+  if (doc.process?.length) {
+    const s = doc.sections.find((x) => /^How (?:does|is)\b.*\b(?:run|built)\b/.test(x.heading));
+    return { heading: s?.heading ?? `How ${doc.cardTitle} runs`, steps: doc.process };
+  }
   for (const s of doc.sections) {
     if (!/^How (?:does|is)\b.*\b(?:run|built)\b.*\?$/.test(s.heading)) continue;
     const ol = s.html.match(/<ol[\s\S]*?<\/ol>/);
