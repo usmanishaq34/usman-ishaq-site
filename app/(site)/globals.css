@@ -770,6 +770,12 @@ a.svc{display:block;color:inherit}
 .svc-foot h2{font-family:var(--display);font-weight:500;font-size:clamp(24px,3vw,32px);margin:0 0 10px;color:var(--text)}
 .svc-foot p{color:var(--text-2);margin:0 0 22px;font-size:16px;line-height:1.7}
 .svc-foot .svc-cta{margin:0}
+.svc-related{margin-top:48px;padding:24px 28px;border:1px solid var(--line);background:var(--bg-2);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 32px}
+.svc-related-label{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.svc-related ul{list-style:none;margin:0;padding:0}
+.svc-related li{margin:0 0 8px;line-height:1.5}
+.svc-related a{color:var(--text-2);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.svc-related a:hover{color:var(--accent);text-decoration-color:var(--accent)}
 .svc-content section{padding:0}
 
 /* service page: self-check list and buttons inside the article */

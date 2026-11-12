@@ -59,6 +59,15 @@ const nextConfig = {
       { source: "/semantic-seo/:slug", destination: "/blog/:slug", permanent: true },
       { source: "/content-writing/:slug", destination: "/blog/:slug", permanent: true },
       { source: "/social-media-marketing/:slug", destination: "/blog/:slug", permanent: true },
+      // Malformed links from the old site: a date, a feed or a second URL glued
+      // onto a post address (Search Console lists ten as 404). The post slug is
+      // the first segment, so the rest is dropped.
+      { source: "/blog/:slug/:rest+", destination: "/blog/:slug", permanent: true },
+      { source: "/semantic-seo/:slug/:rest+", destination: "/blog/:slug", permanent: true },
+      { source: "/content-writing/:slug/:rest+", destination: "/blog/:slug", permanent: true },
+      { source: "/social-media-marketing/:slug/:rest+", destination: "/blog/:slug", permanent: true },
+      { source: "/google-update/:path+", destination: "/blog", permanent: true },
+      { source: "/copywriting/:path+", destination: "/blog", permanent: true },
       { source: "/category/:path*", destination: "/blog", permanent: true },
       { source: "/feed", destination: "/blog", permanent: true },
       { source: "/wp-admin/:path*", destination: "/usman-1000-admin", permanent: false },

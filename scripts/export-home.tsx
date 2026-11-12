@@ -28,7 +28,6 @@ import Fit from "../components/sections/Fit"
 import Blog from "../components/sections/Blog"
 import Faq from "../components/sections/Faq"
 import Contact from "../components/sections/Contact"
-import { siteGraph, faqPage } from "../lib/schema"
 import { route } from "../lib/routes"
 
 const sections: [string, string, () => React.ReactElement][] = [
@@ -56,8 +55,9 @@ const sections: [string, string, () => React.ReactElement][] = [
 ]
 
 const home = route("/")
-const { "@context": _ctx, ...faq } = faqPage as Record<string, unknown>
-const ld = JSON.stringify({ "@context": "https://schema.org", "@graph": [...(siteGraph as { "@graph": unknown[] })["@graph"], faq] })
+// The homepage JSON-LD is built at request time by homeGraph() in
+// lib/structured-data.ts, from the visible FAQ, the services and the newest posts.
+const ld = ""
 
 const doc = {
   path: "/",

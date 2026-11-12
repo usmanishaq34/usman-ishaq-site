@@ -9,6 +9,7 @@ import { BlogCard, categoriesOf, postCardSelect, type PostRow } from "@/componen
 import { prisma } from "@/lib/db";
 import { route } from "@/lib/routes";
 import { withSeoOverride } from "@/lib/site-content";
+import { blogIndexGraph } from "@/lib/structured-data";
 
 // Blog index in the agency blog's design. Posts come from the dashboard;
 // refreshed on publish and every 30 seconds.
@@ -77,6 +78,10 @@ export default async function BlogPage() {
       <Overlays />
       <Interactions />
       <BlogCategoryFilter />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: blogIndexGraph({ title: r.title, description: r.description, posts }) }}
+      />
     </>
   );
 }

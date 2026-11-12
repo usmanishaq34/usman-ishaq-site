@@ -8,17 +8,38 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://usmanishaq.com";
 // and on demand when a post is saved in the dashboard.
 export const revalidate = 3600;
 
+// lastmod is given only where a real change date exists: the homepage's last
+// dashboard edit, the newest post for the blog index, and each post's own
+// update time. Service pages ship in code and carry no lastmod, so the sitemap
+// never claims a change that did not happen.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await prisma.post
-    .findMany({ where: { published: true, noindex: false }, select: { slug: true, updatedAt: true } })
+    .findMany({
+      where: { published: true, noindex: false },
+      select: { slug: true, updatedAt: true },
+      orderBy: { updatedAt: "desc" },
+    })
     .catch(() => [] as { slug: string; updatedAt: Date }[]);
+  const home = await prisma.siteContent
+    .findUnique({ where: { key: "/" }, select: { updatedAt: true } })
+    .catch(() => null);
+
+  const lastModifiedFor = (path: string): Date | undefined => {
+    if (path === "/") return home?.updatedAt;
+    if (path === "/blog") return posts[0]?.updatedAt;
+    return undefined;
+  };
+
   return [
-    ...routes.map((r) => ({
-      url: `${siteUrl}${r.path === "/" ? "/" : r.path}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: r.priority,
-    })),
+    ...routes.map((r) => {
+      const lastModified = lastModifiedFor(r.path);
+      return {
+        url: `${siteUrl}${r.path === "/" ? "/" : r.path}`,
+        ...(lastModified ? { lastModified } : {}),
+        changeFrequency: "monthly" as const,
+        priority: r.priority,
+      };
+    }),
     ...posts.map((p) => ({
       url: `${siteUrl}/blog/${p.slug}`,
       lastModified: p.updatedAt,

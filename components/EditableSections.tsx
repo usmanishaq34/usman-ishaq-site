@@ -2,7 +2,10 @@ import parse, { type DOMNode, Element } from "html-react-parser";
 import { notFound } from "next/navigation";
 import Island from "@/components/Island";
 import { renderIsland, type IslandAttrs } from "@/components/islands";
-import { syncFaqSchema } from "@/lib/faq-schema";
+import { faqFromHtml, syncFaqSchema } from "@/lib/faq-schema";
+import { prisma } from "@/lib/db";
+import { serviceIndex } from "@/content/services";
+import { homeGraph } from "@/lib/structured-data";
 import { getPageContent } from "@/lib/site-content";
 
 /* Renders a dashboard-editable page. Each section is stored as HTML;
@@ -33,7 +36,28 @@ export default async function EditableSections({ path }: { path: string }) {
   const rendered = new Map(await Promise.all(jobs));
 
   const allHtml = visible.map((b) => b.html).join("");
-  const ld = doc.ld ? syncFaqSchema(doc.ld, allHtml) : "";
+  // The homepage graph is built in code (lib/structured-data.ts) so it always
+  // matches the visible FAQ, the service list and the newest posts.
+  const ld =
+    path === "/"
+      ? homeGraph({
+          title: doc.seo.title,
+          description: doc.seo.description,
+          html: allHtml,
+          faqs: faqFromHtml(allHtml),
+          services: serviceIndex,
+          latestPosts: await prisma.post
+            .findMany({
+              where: { published: true, noindex: false },
+              orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
+              take: 4,
+              select: { slug: true, title: true },
+            })
+            .catch(() => []),
+        })
+      : doc.ld
+        ? syncFaqSchema(doc.ld, allHtml)
+        : "";
 
   return (
     <div data-dv-page={path} style={{ display: "contents" }}>

@@ -1,10 +1,9 @@
 import Link from "next/link";
 import type { Author, Category, Post } from "@prisma/client";
 import TableScrollArrows from "@/components/blog/TableScrollArrows";
+import { articleGraph, normalizeInternalLinks } from "@/lib/structured-data";
 
 export type FullPost = Post & { category: Category | null; postAuthor: Author | null };
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://usmanishaq.com";
 
 export function formatDate(d: Date | string | null | undefined) {
   if (!d) return "";
@@ -21,28 +20,11 @@ function withScrollableTables(html: string): string {
     .replace(/<\/table\s*>/gi, "</table></div></div>");
 }
 
+// The page's JSON-LD @graph (lib/structured-data.ts): WebPage, BlogPosting,
+// Blog, breadcrumb and the site identity nodes, with the body's internal links
+// mirrored as significantLink / relatedLink.
 export function articleJsonLd(post: FullPost): string {
-  const url = `${siteUrl}/blog/${post.slug}`;
-  const data = {
-    "@context": "https://schema.org",
-    "@type": post.schemaType === "BlogPosting" || !post.schemaType ? "BlogPosting" : post.schemaType,
-    "@id": `${url}#article`,
-    headline: post.seoTitle || post.title,
-    description: post.seoDescription || post.excerpt,
-    url,
-    mainEntityOfPage: url,
-    datePublished: (post.publishedAt ?? post.createdAt).toISOString(),
-    dateModified: post.updatedAt.toISOString(),
-    image: post.featuredImage ? [post.featuredImage.startsWith("http") ? post.featuredImage : `${siteUrl}${post.featuredImage}`] : undefined,
-    author: post.postAuthor
-      ? { "@type": "Person", "@id": `${siteUrl}/#person`, name: post.postAuthor.name, jobTitle: post.postAuthor.title ?? undefined }
-      : { "@id": `${siteUrl}/#person` },
-    publisher: { "@id": `${siteUrl}/#person` },
-    articleSection: post.category?.name ?? undefined,
-    keywords: post.tags.length ? post.tags.join(", ") : undefined,
-    isPartOf: { "@id": `${siteUrl}/#website` },
-  };
-  return JSON.stringify(data).replace(/<\/script/gi, "<\\/script");
+  return articleGraph({ ...post, content: normalizeInternalLinks(post.content) });
 }
 
 /* One blog post in the agency blog's design: breadcrumb, meta line, display
@@ -92,7 +74,7 @@ export default function Article({ post, preview }: { post: FullPost; preview?: b
 
           {post.excerpt ? <p className="post-excerpt">{post.excerpt}</p> : null}
 
-          <div className="post-content" dangerouslySetInnerHTML={{ __html: withScrollableTables(post.content) }} />
+          <div className="post-content" dangerouslySetInnerHTML={{ __html: withScrollableTables(normalizeInternalLinks(post.content)) }} />
           <TableScrollArrows />
 
           {post.tags.length > 0 ? (

@@ -8,6 +8,9 @@ import Interactions from "@/components/Interactions";
 import SelfTest from "@/components/SelfTest";
 import { serviceIndex, serviceLoaders } from "@/content/services";
 import { withSeoOverride } from "@/lib/site-content";
+import { prisma } from "@/lib/db";
+import { faqFromHtml } from "@/lib/faq-schema";
+import { serviceGraph, serviceRelations, type PostRef } from "@/lib/structured-data";
 
 // Single service pages. Content ships in content/services/<slug>.json
 // (built from the Digital Vikingz service pages by scripts/import-services.mjs);
@@ -16,7 +19,6 @@ export const revalidate = 3600;
 
 const CALENDLY = "https://calendly.com/usmanishaqsemanticseospecialist/digital-vikingz";
 const WHATSAPP = "https://wa.me/message/7CLDLUNQWRTTD1";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://usmanishaq.com";
 
 type ServiceDoc = {
   slug: string;
@@ -35,6 +37,17 @@ async function load(slug: string): Promise<ServiceDoc | null> {
   const loader = serviceLoaders[slug];
   if (!loader) return null;
   return (await loader()).default as ServiceDoc;
+}
+
+// Published articles named in serviceRelations, in that order. A post that is
+// unpublished or renamed simply drops out of the block and the schema.
+async function guidesFor(slug: string): Promise<PostRef[]> {
+  const wanted = serviceRelations[slug]?.guides ?? [];
+  if (!wanted.length) return [];
+  const rows = await prisma.post
+    .findMany({ where: { slug: { in: wanted }, published: true, noindex: false }, select: { slug: true, title: true } })
+    .catch(() => [] as PostRef[]);
+  return wanted.map((w) => rows.find((r) => r.slug === w)).filter(Boolean) as PostRef[];
 }
 
 export function generateStaticParams() {
@@ -57,33 +70,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   );
 }
 
-function serviceJsonLd(doc: ServiceDoc): string {
-  const url = `${siteUrl}/services/${doc.slug}`;
-  const faqs = [...doc.sections.flatMap((s) => [...s.html.matchAll(/<details[^>]*>\s*<summary[^>]*>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)])].map((m) => ({
-    "@type": "Question",
-    name: m[1].replace(/<[^>]+>/g, "").trim(),
-    acceptedAnswer: { "@type": "Answer", text: m[2].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() },
-  }));
-  const graph: unknown[] = [
-    {
-      "@type": "Service",
-      "@id": `${url}#service`,
-      name: doc.cardTitle,
-      description: doc.description,
-      url,
-      serviceType: doc.cardTitle,
-      provider: { "@id": "https://digitalvikingz.com/#organization" },
-      areaServed: ["United States", "United Kingdom", "Canada", "Australia", "United Arab Emirates", "Germany"],
-    },
-  ];
-  if (faqs.length) graph.push({ "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: faqs });
-  return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/<\/script/gi, "<\\/script");
-}
-
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
   const doc = await load(slug);
   if (!doc) notFound();
+  const rel = serviceRelations[slug] ?? { guides: [] };
+  const linked = [...(rel.related ?? []), ...(rel.similar ?? [])]
+    .map((s) => serviceIndex.find((x) => x.slug === s))
+    .filter((s): s is (typeof serviceIndex)[number] => Boolean(s));
+  const guides = await guidesFor(slug);
+  const ld = serviceGraph({
+    doc,
+    title: `${doc.title} | Usman Ishaq`,
+    faqs: faqFromHtml(doc.sections.map((s) => s.html).join("")),
+    services: serviceIndex,
+    guides,
+  });
   return (
     <>
       <SiteHeader light />
@@ -108,6 +110,34 @@ export default async function ServicePage({ params }: Props) {
               <section key={s.id} dangerouslySetInnerHTML={{ __html: s.html }} />
             ))}
           </div>
+          {linked.length || guides.length ? (
+            <aside className="svc-related" aria-label="Related services and guides">
+              {linked.length ? (
+                <div>
+                  <p className="svc-related-label">Related services</p>
+                  <ul>
+                    {linked.map((s) => (
+                      <li key={s.slug}>
+                        <a href={`/services/${s.slug}`}>{s.cardTitle}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              {guides.length ? (
+                <div>
+                  <p className="svc-related-label">Guides on this topic</p>
+                  <ul>
+                    {guides.map((g) => (
+                      <li key={g.slug}>
+                        <a href={`/blog/${g.slug}`}>{g.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </aside>
+          ) : null}
           {doc.cta ? (
             <div className="svc-foot">
               <h2>{doc.cta.heading}</h2>
@@ -127,7 +157,7 @@ export default async function ServicePage({ params }: Props) {
       <Overlays />
       <Interactions />
       <SelfTest />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serviceJsonLd(doc) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} />
     </>
   );
 }
