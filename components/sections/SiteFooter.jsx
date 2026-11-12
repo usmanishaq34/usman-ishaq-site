@@ -124,6 +124,11 @@ export default function SiteFooter() {
                 </a>
               </li>
               <li>
+                <a href="/case-studies">
+                  {"Case studies"}
+                </a>
+              </li>
+              <li>
                 <a href="/blog">
                   {"Blog"}
                 </a>

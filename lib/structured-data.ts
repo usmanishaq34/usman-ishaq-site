@@ -435,9 +435,10 @@ export type ArticleLike = {
 
 const isOwner = (a: ArticleLike["postAuthor"]) => !a || a.name.trim().toLowerCase() === "usman ishaq";
 
-export function articleGraph(post: ArticleLike): string {
-  const url = postUrl(post.slug);
-  const links = linksIn(post.content, `/blog/${post.slug}`);
+export function articleGraph(post: ArticleLike, section: "blog" | "case-studies" = "blog"): string {
+  const base = section === "case-studies" ? "/case-studies" : "/blog";
+  const url = `${SITE}${base}/${post.slug}`;
+  const links = linksIn(post.content, `${base}/${post.slug}`);
   const image = post.featuredImage ? (post.featuredImage.startsWith("http") ? post.featuredImage : `${SITE}${post.featuredImage}`) : undefined;
   const words = strip(post.content).split(" ").filter(Boolean).length;
   const authorNode: Node | null = isOwner(post.postAuthor)
@@ -468,6 +469,7 @@ export function articleGraph(post: ArticleLike): string {
     articleSection: post.category?.name ?? undefined,
     keywords: post.tags.length ? post.tags.join(", ") : undefined,
     about: post.focusKeyword ? { "@type": "Thing", name: post.focusKeyword } : undefined,
+    ...(section === "case-studies" ? { genre: "Case study" } : {}),
   };
 
   const page: Node = {
@@ -490,7 +492,7 @@ export function articleGraph(post: ArticleLike): string {
     article,
     breadcrumbNode(url, [
       { name: "Home", url: `${SITE}/` },
-      { name: "Blogs", url: `${SITE}/blog` },
+      section === "case-studies" ? { name: "Case studies", url: `${SITE}/case-studies` } : { name: "Blogs", url: `${SITE}/blog` },
       { name: post.title, url },
     ]),
     { "@type": "Blog", "@id": ID.blog, name: "Usman Ishaq blog", url: `${SITE}/blog`, publisher: { "@id": ID.person } },
@@ -548,4 +550,47 @@ export function blogIndexGraph(opts: {
 
 function dedupe(list: string[]): string[] {
   return [...new Set(list)];
+}
+
+/* ---------- case-studies hub ---------- */
+
+export function caseStudiesHubGraph(opts: {
+  title: string;
+  description: string;
+  items: { slug: string; title: string; excerpt: string | null; industry: string }[];
+}): string {
+  const url = `${SITE}/case-studies`;
+  return serialize([
+    {
+      "@type": "CollectionPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: opts.title,
+      description: opts.description,
+      inLanguage: "en",
+      isPartOf: { "@id": ID.website },
+      about: { "@id": ID.person },
+      mainEntity: { "@id": `${url}#list` },
+      breadcrumb: { "@id": `${url}#breadcrumb` },
+      relatedLink: opts.items.map((i) => `${url}/${i.slug}`),
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${url}#list`,
+      name: "Semantic SEO case studies",
+      numberOfItems: opts.items.length,
+      itemListElement: opts.items.map((i, n) => ({
+        "@type": "ListItem",
+        position: n + 1,
+        name: i.title,
+        url: `${url}/${i.slug}`,
+        item: { "@type": "Article", "@id": `${url}/${i.slug}#article`, headline: i.title, genre: "Case study", about: i.industry },
+      })),
+    },
+    breadcrumbNode(url, [
+      { name: "Home", url: `${SITE}/` },
+      { name: "Case studies", url },
+    ]),
+    ...identityNodes(),
+  ]);
 }

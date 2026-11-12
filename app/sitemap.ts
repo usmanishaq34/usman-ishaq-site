@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/db";
 import { routes } from "@/lib/routes";
 import { canonicalToAgency } from "@/content/services/canonical";
+import { CASE_STUDIES } from "@/lib/case-studies";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://usmanishaq.com";
 
@@ -17,17 +18,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await prisma.post
     .findMany({
       where: { published: true, noindex: false },
-      select: { slug: true, updatedAt: true },
+      select: { slug: true, updatedAt: true, category: { select: { slug: true } } },
       orderBy: { updatedAt: "desc" },
     })
-    .catch(() => [] as { slug: string; updatedAt: Date }[]);
+    .catch(() => [] as { slug: string; updatedAt: Date; category: { slug: string } | null }[]);
   const home = await prisma.siteContent
     .findUnique({ where: { key: "/" }, select: { updatedAt: true } })
     .catch(() => null);
 
   const lastModifiedFor = (path: string): Date | undefined => {
     if (path === "/") return home?.updatedAt;
-    if (path === "/blog") return posts[0]?.updatedAt;
+    if (path === "/blog") return posts.find((p) => p.category?.slug !== CASE_STUDIES.slug)?.updatedAt;
+    if (path === CASE_STUDIES.path) return posts.find((p) => p.category?.slug === CASE_STUDIES.slug)?.updatedAt;
     return undefined;
   };
 
@@ -43,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
     }),
     ...posts.map((p) => ({
-      url: `${siteUrl}/blog/${p.slug}`,
+      url: `${siteUrl}${p.category?.slug === CASE_STUDIES.slug ? CASE_STUDIES.path : "/blog"}/${p.slug}`,
       lastModified: p.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.7,

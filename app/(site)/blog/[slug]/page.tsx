@@ -1,6 +1,7 @@
 import { OG_IMAGE } from "@/lib/og-image";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { CASE_STUDIES, isCaseStudy } from "@/lib/case-studies";
 import SiteHeader from "@/components/sections/SiteHeader";
 import SiteFooter from "@/components/sections/SiteFooter";
 import Overlays from "@/components/sections/Overlays";
@@ -62,6 +63,7 @@ export default async function Page({ params }: Props) {
   const { slug } = await params;
   const post = await fetchPost(slug);
   if (!post || !post.published) notFound();
+  if (isCaseStudy(post)) permanentRedirect(`${CASE_STUDIES.path}/${post.slug}`);
   return (
     <>
       <SiteHeader light />

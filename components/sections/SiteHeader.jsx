@@ -49,6 +49,11 @@ export default function SiteHeader({ light = false } = {}) {
             </a>
           </li>
           <li>
+            <a href="/case-studies">
+              {"Case studies"}
+            </a>
+          </li>
+          <li>
             <a href="/blog">
               {"Blog"}
             </a>
@@ -98,6 +103,9 @@ export default function SiteHeader({ light = false } = {}) {
       </a>
       <a href="/#about">
         {"About"}
+      </a>
+      <a href="/case-studies">
+        {"Case studies"}
       </a>
       <a href="/blog">
         {"Blog"}

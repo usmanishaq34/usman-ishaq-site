@@ -93,7 +93,16 @@ export async function POST(req: Request) {
 
   let categoryId: string | null = null
   if (input.categorySlug) {
-    const cat = await prisma.category.findUnique({ where: { slug: input.categorySlug } })
+    // The Case Studies category is created on first use, so case studies can be
+    // published by the engine before anyone creates the category by hand.
+    const cat =
+      input.categorySlug === "case-studies"
+        ? await prisma.category.upsert({
+            where: { slug: "case-studies" },
+            update: {},
+            create: { slug: "case-studies", name: "Case Studies", description: "Anonymised semantic SEO and AI search case studies." },
+          })
+        : await prisma.category.findUnique({ where: { slug: input.categorySlug } })
     if (!cat) return NextResponse.json({ error: `Unknown category slug "${input.categorySlug}"` }, { status: 400 })
     categoryId = cat.id
   }
@@ -121,7 +130,7 @@ export async function POST(req: Request) {
     ? await prisma.post.update({ where: { id: existing.id }, data })
     : await prisma.post.create({ data: { ...data, authorId: user.id } })
 
-  for (const p of ["/", "/blog", `/blog/${post.slug}`, "/sitemap.xml"]) {
+  for (const p of ["/", "/blog", `/blog/${post.slug}`, "/case-studies", `/case-studies/${post.slug}`, "/sitemap.xml"]) {
     try { revalidatePath(p) } catch {}
   }
   if (post.published && !post.noindex) {

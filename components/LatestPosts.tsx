@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import { notCaseStudy } from "@/lib/case-studies";
 import { CategoryFilters, FeaturedCard, PostCard, catSlug, postCardSelect, type PostRow } from "@/components/PostCard";
 
 const PER_TAB = 3;
@@ -10,7 +11,7 @@ const PER_TAB = 3;
 export default async function LatestPosts() {
   const all: PostRow[] = await prisma.post
     .findMany({
-      where: { published: true },
+      where: { published: true, ...notCaseStudy },
       orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
       select: postCardSelect,
     })

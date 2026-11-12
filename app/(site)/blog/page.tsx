@@ -10,6 +10,7 @@ import { prisma } from "@/lib/db";
 import { route } from "@/lib/routes";
 import { withSeoOverride } from "@/lib/site-content";
 import { blogIndexGraph } from "@/lib/structured-data";
+import { notCaseStudy } from "@/lib/case-studies";
 
 // Blog index in the agency blog's design. Posts come from the dashboard;
 // refreshed on publish and every 30 seconds.
@@ -32,7 +33,7 @@ export function generateMetadata(): Promise<Metadata> {
 export default async function BlogPage() {
   const posts: PostRow[] = await prisma.post
     .findMany({
-      where: { published: true },
+      where: { published: true, ...notCaseStudy },
       orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
       select: postCardSelect,
     })

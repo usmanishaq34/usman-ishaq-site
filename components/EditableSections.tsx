@@ -6,6 +6,7 @@ import { faqFromHtml, syncFaqSchema } from "@/lib/faq-schema";
 import { prisma } from "@/lib/db";
 import { serviceIndex } from "@/content/services";
 import { homeGraph } from "@/lib/structured-data";
+import { notCaseStudy } from "@/lib/case-studies";
 import { getPageContent } from "@/lib/site-content";
 
 /* Renders a dashboard-editable page. Each section is stored as HTML;
@@ -48,7 +49,7 @@ export default async function EditableSections({ path }: { path: string }) {
           services: serviceIndex,
           latestPosts: await prisma.post
             .findMany({
-              where: { published: true, noindex: false },
+              where: { published: true, noindex: false, ...notCaseStudy },
               orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
               take: 4,
               select: { slug: true, title: true },

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Author, Category, Post } from "@prisma/client";
 import TableScrollArrows from "@/components/blog/TableScrollArrows";
 import { articleGraph, normalizeInternalLinks } from "@/lib/structured-data";
+import { sectionBase, sectionLabel, type Section } from "@/lib/case-studies";
 
 export type FullPost = Post & { category: Category | null; postAuthor: Author | null };
 
@@ -23,14 +24,14 @@ function withScrollableTables(html: string): string {
 // The page's JSON-LD @graph (lib/structured-data.ts): WebPage, BlogPosting,
 // Blog, breadcrumb and the site identity nodes, with the body's internal links
 // mirrored as significantLink / relatedLink.
-export function articleJsonLd(post: FullPost): string {
-  return articleGraph({ ...post, content: normalizeInternalLinks(post.content) });
+export function articleJsonLd(post: FullPost, section: Section = "blog"): string {
+  return articleGraph({ ...post, content: normalizeInternalLinks(post.content) }, section);
 }
 
 /* One blog post in the agency blog's design: breadcrumb, meta line, display
    title, featured image, excerpt, article body, tags and author box. Used by
    /blog/[slug] and, with `preview`, by the dashboard's draft preview. */
-export default function Article({ post, preview }: { post: FullPost; preview?: boolean }) {
+export default function Article({ post, preview, section = "blog" }: { post: FullPost; preview?: boolean; section?: Section }) {
   const author = post.postAuthor;
   const status = post.status === "published" || post.published ? "published" : post.status === "scheduled" ? "scheduled" : "draft";
   return (
@@ -46,7 +47,7 @@ export default function Article({ post, preview }: { post: FullPost; preview?: b
           <nav className="dv-post-crumbs" aria-label="Breadcrumb">
             <a href="/">Home</a>
             <span>/</span>
-            <a href="/blog">Blogs</a>
+            <a href={sectionBase(section)}>{sectionLabel(section)}</a>
             <span>/</span>
             <span>{post.title.length > 40 ? `${post.title.slice(0, 40)}…` : post.title}</span>
           </nav>
@@ -98,11 +99,11 @@ export default function Article({ post, preview }: { post: FullPost; preview?: b
           ) : null}
 
           <p className="dv-post-back">
-            <a href="/blog">← All articles</a>
+            <a href={sectionBase(section)}>{section === "case-studies" ? "← All case studies" : "← All articles"}</a>
           </p>
         </div>
       </article>
-      {!preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleJsonLd(post) }} /> : null}
+      {!preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleJsonLd(post, section) }} /> : null}
     </>
   );
 }

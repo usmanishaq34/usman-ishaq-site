@@ -33,6 +33,15 @@ export const routes: Route[] = [
     kind: "core",
     priority: 0.8,
   },
+  {
+    path: "/case-studies",
+    label: "Case studies",
+    title: "Semantic SEO Case Studies | Usman Ishaq",
+    description:
+      "Anonymised semantic SEO and AI search case studies: the work in order, with Search Console and AI citation results, by business type.",
+    kind: "core",
+    priority: 0.8,
+  },
   ...serviceIndex.map(
     (s): Route => ({
       path: `/services/${s.slug}`,
