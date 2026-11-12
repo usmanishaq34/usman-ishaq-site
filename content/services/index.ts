@@ -4,8 +4,8 @@ export const serviceIndex: ServiceSummary[] = [
   {
     "slug": "semantic-seo-architecture",
     "cardTitle": "Semantic SEO Architecture",
-    "title": "Semantic SEO Architecture | Central Entity and Topical Map",
-    "description": "Fixed-scope project that defines your central entity, maps its attributes and queries, decides which get a page, and sequences 12 months of publishing."
+    "title": "Semantic SEO Architecture | Topical Map and Roadmap Project",
+    "description": "Semantic SEO Architecture delivers a topical map, a page decision for every search and a 12-month roadmap, priced as one fixed scope quoted in writing."
   },
   {
     "slug": "semantic-content-audit",

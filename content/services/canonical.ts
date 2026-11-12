@@ -7,7 +7,6 @@
 export const AGENCY_SERVICE_BASE = "https://digitalvikingz.com/services";
 
 export const canonicalToAgency = new Set<string>([
-  "semantic-seo-architecture",
   "website-development",
   "ai-search-visibility",
   "semantic-content-production",
