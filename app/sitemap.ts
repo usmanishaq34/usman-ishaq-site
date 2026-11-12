@@ -6,9 +6,10 @@ import { CASE_STUDIES } from "@/lib/case-studies";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://usmanishaq.com";
 
-// The site's pages plus every published post. Rebuilt at most once an hour,
-// and on demand when a post is saved in the dashboard.
-export const revalidate = 3600;
+// The site's pages plus every published post, read on every request. The
+// cached version (revalidate 3600 plus revalidatePath on publish) stopped
+// refreshing on 2026-11-12 and left new posts out; one query per crawl is cheap.
+export const dynamic = "force-dynamic";
 
 // lastmod is given only where a real change date exists: the homepage's last
 // dashboard edit, the newest post for the blog index, and each post's own
