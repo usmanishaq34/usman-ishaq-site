@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/db";
 import { routes } from "@/lib/routes";
+import { canonicalToAgency } from "@/content/services/canonical";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://usmanishaq.com";
 
@@ -31,7 +32,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   };
 
   return [
-    ...routes.map((r) => {
+    // Service pages that canonicalise to digitalvikingz.com stay out until rewritten.
+    ...routes.filter((r) => !(r.kind === "service" && canonicalToAgency.has(r.path.replace("/services/", "")))).map((r) => {
       const lastModified = lastModifiedFor(r.path);
       return {
         url: `${siteUrl}${r.path === "/" ? "/" : r.path}`,

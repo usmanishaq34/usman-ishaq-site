@@ -7,6 +7,7 @@ import Overlays from "@/components/sections/Overlays";
 import Interactions from "@/components/Interactions";
 import SelfTest from "@/components/SelfTest";
 import { serviceIndex, serviceLoaders } from "@/content/services";
+import { agencyCanonical } from "@/content/services/canonical";
 import { withSeoOverride } from "@/lib/site-content";
 import { prisma } from "@/lib/db";
 import { faqFromHtml } from "@/lib/faq-schema";
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     {
       title: `${doc.title} | Usman Ishaq`,
       description: doc.description,
-      alternates: { canonical: path },
+      alternates: { canonical: agencyCanonical(slug) ?? path },
       openGraph: { title: doc.title, description: doc.description, url: path, type: "website", images: [OG_IMAGE] },
     },
     path,
